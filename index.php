@@ -1,7 +1,7 @@
-<?php 
+<?php
 $is_auth = rand(0, 1);
 
-$user_name = ''; // укажите здесь ваше имя
+$user_name = 'Саша'; // укажите здесь ваше имя
 ?>
 <!DOCTYPE html>
 <html lang="ru">

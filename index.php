@@ -143,10 +143,12 @@ $user_name = 'Саша'; // укажите здесь ваше имя
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
+            <?php foreach ($categories as $key => $val): ?>
             <!--заполните этот список из массива категорий-->
             <li class="nav__item">
-                <a href="pages/all-lots.html">Название категории</a>
+                <a href="pages/all-lots.html"><?php print($val); ?></a>
             </li>
+            <?php endforeach; ?>
         </ul>
     </nav>
     <div class="main-footer__bottom container">

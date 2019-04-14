@@ -1,4 +1,5 @@
 <?php require "data.php"; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,6 @@
                 <input class="main-header__search-btn" type="submit" name="find" value="Найти">
             </form>
             <a class="main-header__add-lot button" href="pages/add-lot.html">Добавить лот</a>
-
             <nav class="user-menu">
                 <!-- здесь должен быть PHP код для показа меню и данных пользователя -->
                 <?php if($is_auth == 1): ?>
@@ -74,7 +74,7 @@
                         <div class="lot__state">
                             <div class="lot__rate">
                                 <span class="lot__amount">Стартовая цена</span>
-                                <span class="lot__cost"><?= $good["price"] ?><b class="rub">р</b></span>
+                                <span class="lot__cost"><?= asCurrancy($good["price"]); ?></span>
                             </div>
                             <div class="lot__timer timer">
                                 12:23

@@ -13,3 +13,8 @@ $goods = [
     ["name" => "Куртка для сноуборда DC Mutiny Charocal", "category" => "Одежда", "price" => 7500, "url" => "img/lot-5.jpg"],
     ["name" => "Маска Oakley Canopy", "category" => "Разное", "price" => 5400, "url" => "img/lot-6.jpg"]
 ];
+
+function asCurrancy($number) {
+    $fixedNumber = number_format($number, "0", "", " ");
+    return ($fixedNumber . " <b class=\"rub\">р</b>");
+}

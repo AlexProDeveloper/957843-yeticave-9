@@ -16,5 +16,5 @@ $goods = [
 
 function priceFix($number) {
     $fixedNumber = number_format($number, "0", "", " ");
-    return $fixedNumber;
+    return ($fixedNumber . " <small>₽</small>");
 }

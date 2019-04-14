@@ -1,9 +1,4 @@
-<?php
-$is_auth = rand(0, 1);
-
-$user_name = 'Саша'; // укажите здесь ваше имя
-
-?>
+<?php require "data.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +39,6 @@ $user_name = 'Саша'; // укажите здесь ваше имя
                          </li>
                      </ul>
                  <?php endif; ?>
-
             </nav>
         </div>
     </header>
@@ -55,9 +49,12 @@ $user_name = 'Саша'; // укажите здесь ваше имя
             <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
             <ul class="promo__list">
                 <!--заполните этот список из массива категорий-->
-                <li class="promo__item promo__item--boards">
-                    <a class="promo__link" href="pages/all-lots.html">Имя категории</a>
-                </li>
+
+                <?php foreach ($categories  as $category) { ?>
+                    <li class="promo__item promo__item--boards">
+                        <a  class="promo__link" href="pages/all-lots.html"><?php print($category); ?></a>
+                    </li>
+                <?php } ?>
             </ul>
         </section>
         <section class="lots">
@@ -66,17 +63,18 @@ $user_name = 'Саша'; // укажите здесь ваше имя
             </div>
             <ul class="lots__list">
                 <!--заполните этот список из массива с товарами-->
+                <?php foreach ($goods as $good) { ?>
                 <li class="lots__item lot">
                     <div class="lot__image">
-                        <img src="" width="350" height="260" alt="">
+                        <img src="<?=$good["url"]; ?>" width="350" height="260" alt="">
                     </div>
                     <div class="lot__info">
-                        <span class="lot__category">Название категории</span>
-                        <h3 class="lot__title"><a class="text-link" href="pages/lot.html">Название товара</a></h3>
+                        <span class="lot__category"><?= $good["category"] ?></span>
+                        <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?= $good["name"] ?></a></h3>
                         <div class="lot__state">
                             <div class="lot__rate">
                                 <span class="lot__amount">Стартовая цена</span>
-                                <span class="lot__cost">цена<b class="rub">р</b></span>
+                                <span class="lot__cost"><?= $good["price"] ?><b class="rub">р</b></span>
                             </div>
                             <div class="lot__timer timer">
                                 12:23
@@ -84,6 +82,7 @@ $user_name = 'Саша'; // укажите здесь ваше имя
                         </div>
                     </div>
                 </li>
+                <?php } ?>
             </ul>
         </section>
     </main>
@@ -92,10 +91,12 @@ $user_name = 'Саша'; // укажите здесь ваше имя
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
+            <?php foreach ($categories as $category) { ?>
             <!--заполните этот список из массива категорий-->
             <li class="nav__item">
-                <a href="pages/all-lots.html">Название категории</a>
+                <a href="pages/all-lots.html"><?php print($category); ?></a>
             </li>
+            <?php } ?>
         </ul>
     </nav>
     <div class="main-footer__bottom container">
@@ -140,7 +141,7 @@ $user_name = 'Саша'; // укажите здесь ваше имя
     </div>
 </footer>
 
- <script src="flatpickr.js"></script>
- <script src="script.js"></script>
+<script src="flatpickr.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

@@ -14,6 +14,9 @@ $goods = [
     ["name" => "Маска Oakley Canopy", "category" => "Разное", "price" => 5400, "url" => "img/lot-6.jpg"]
 ];
 
+//htmlspecialchars($categories);
+//htmlspecialchars($goods);
+
 function asCurrancy($number) {
     $fixedNumber = number_format($number, "0", "", " ");
     return ($fixedNumber . " <b class=\"rub\">р</b>");

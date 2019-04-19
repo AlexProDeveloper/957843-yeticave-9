@@ -1,8 +1,11 @@
 <?php
-$midnight = date_create("tomorrow midnight");
-$today = date_create("now");
-$diff = date_diff($today, $midnight);
-$currentDiff = date_interval_format($diff, "%h<span>:</span>%I");
+function getTime() {
+    $midnight = date_create("tomorrow midnight");
+    $today = date_create("now");
+    $diff = date_diff($today, $midnight);
+    $currentDiff = date_interval_format($diff, "%h<span>:</span>%I");
+    return $currentDiff;
+}
 ?>
 <section class="promo">
     <h2 class="promo__title">Нужен стафф для катки?</h2>
@@ -36,12 +39,12 @@ $currentDiff = date_interval_format($diff, "%h<span>:</span>%I");
                             <span class="lot__amount">Стартовая цена</span>
                             <span class="lot__cost"><?= asCurrancy(htmlspecialchars($good["price"])); ?></span>
                         </div>
-                        <?php if($currentDiff <= 1) { ?>
+                        <?php if(getTime() <= 1) { ?>
                         <div class="lot__timer timer timer--finishing">
-                            <?php print $currentDiff; ?>
+                            <?php print getTime(); ?>
                         <?php } else {?>
                         <div class="lot__timer timer">
-                            <?php print $currentDiff; } ?>
+                            <?php print getTime(); } ?>
 
                         </div>
                     </div>

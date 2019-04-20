@@ -4,7 +4,7 @@ DEFAULT COLLATE utf8_generical_si;
 USE YetiCave;
 
 CREATE TABLE usersBase(
-    ig INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     name CHAR(30) UNIQUE,
     email char(50) NOT NULL,
     password CHAR(30)

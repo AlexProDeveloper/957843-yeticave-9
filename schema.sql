@@ -1,9 +1,9 @@
 CREATE DATABASE YetiCave
 DEFAULT  CHARACTER SET utf8
-DEFAULT COLLATE utf8_generical_si;
+DEFAULT COLLATE utf8_general_ci;
 USE YetiCave;
 
-CREATE TABLE usersBase(
+CREATE TABLE users(
     id INT AUTO_INCREMENT PRIMARY KEY,
     name CHAR(30) UNIQUE,
     email char(50) NOT NULL,
@@ -11,9 +11,9 @@ CREATE TABLE usersBase(
 );
 
 CREATE TABLE lots(
-    imgUrl CHAR,
+    img_url CHAR,
     category CHAR(30),
     name CHAR(100),
-    prise INT,
+    price INT,
     time INT
 );

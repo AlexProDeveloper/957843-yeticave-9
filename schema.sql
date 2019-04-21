@@ -13,8 +13,8 @@ CREATE TABLE users(
 CREATE TABLE lots(
     id INT AUTO_INCREMENT PRIMARY KEY,
     img_url CHAR,
-    category_id int,
-    name CHAR(100) unique ,
+    category_id INT,
+    name CHAR(100) UNIQUE,
     price INT,
     time INT
 );

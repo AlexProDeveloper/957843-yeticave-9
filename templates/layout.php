@@ -47,7 +47,7 @@
 </div>
 
 <footer class="main-footer">
-    <?php print $footer; ?>
+     <?php print $footer; ?>
 </footer>
 
 <script src="flatpickr.js"></script>

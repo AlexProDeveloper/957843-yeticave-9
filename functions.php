@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 function getTime() {
     $midnight = date_create("tomorrow midnight");

@@ -1,4 +1,4 @@
- <?php
+<?php
 require "data.php";
 require "helpers.php";
 require "functions.php";

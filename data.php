@@ -1,6 +1,7 @@
 <?php
+
 $is_auth = rand(0, 1);
-$user_name = 'Саша'; // укажите здесь ваше имя
+
 $categories = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
 
 $goods = [
@@ -11,4 +12,3 @@ $goods = [
     ["name" => "Куртка для сноуборда DC Mutiny Charocal", "category" => "Одежда", "price" => 7500, "url" => "img/lot-5.jpg"],
     ["name" => "Маска Oakley Canopy", "category" => "Разное", "price" => 5400, "url" => "img/lot-6.jpg"]
 ];
-

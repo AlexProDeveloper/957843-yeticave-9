@@ -11,9 +11,15 @@ CREATE TABLE users(
 );
 
 CREATE TABLE lots(
+    id INT AUTO_INCREMENT PRIMARY KEY,
     img_url CHAR,
-    category CHAR(30),
-    name CHAR(100),
+    category_id int,
+    name CHAR(100) unique ,
     price INT,
     time INT
+);
+
+CREATE TABLE categiries (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name CHAR
 );

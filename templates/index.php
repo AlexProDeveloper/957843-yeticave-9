@@ -1,12 +1,3 @@
-<?php
-function getTime() {
-    $midnight = date_create("tomorrow midnight");
-    $today = date_create("now");
-    $diff = date_diff($today, $midnight);
-    $currentDiff = date_interval_format($diff, "%h<span>:</span>%I");
-    return $currentDiff;
-}
-?>
 <section class="promo">
     <h2 class="promo__title">Нужен стафф для катки?</h2>
     <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
@@ -34,7 +25,7 @@ function getTime() {
                 <div class="lot__info">
                     <span class="lot__category"><?= htmlspecialchars($good["category"]); ?></span>
                     <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?= htmlspecialchars($good["name"]); ?></a></h3>
-                    <div class="lot__state">
+                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
                             <span class="lot__cost"><?= asCurrancy(htmlspecialchars($good["price"])); ?></span>
@@ -42,13 +33,13 @@ function getTime() {
                         <?php if(getTime() <= 1) { ?>
                         <div class="lot__timer timer timer--finishing">
                             <?php print getTime(); ?>
-                        <?php } else {?>
-                        <div class="lot__timer timer">
-                            <?php print getTime(); } ?>
+                            <?php } else {?>
+                            <div class="lot__timer timer">
+                                <?php print getTime(); } ?>
 
+                            </div>
                         </div>
                     </div>
-                </div>
             </li>
         <?php } ?>
     </ul>

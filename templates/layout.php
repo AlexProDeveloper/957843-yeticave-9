@@ -23,31 +23,31 @@
             <nav class="user-menu">
                 <!-- здесь должен быть PHP код для показа меню и данных пользователя -->
                 <?php if($is_auth == 1): ?>
-                        <div class="user-menu__logged">
-                        <p><?php print htmlspecialchars($user_name);?></p>
-                        <a class="user-menu__bets" href="pages/my-bets.html">Мои ставки</a>
-                        <a class="user-menu__logout" href="#">Выход</a>
-                 <?php else: ?>
-                     <ul class="user-menu__list">
-                         <li class="user-menu__item">
-                             <a href="#">Регистрация</a>
-                         </li>
-                         <li class="user-menu__item">
-                             <a href="#">Вход</a>
-                         </li>
-                     </ul>
-                 <?php endif; ?>
+                <div class="user-menu__logged">
+                    <p><?php print htmlspecialchars($user_name);?></p>
+                    <a class="user-menu__bets" href="pages/my-bets.html">Мои ставки</a>
+                    <a class="user-menu__logout" href="#">Выход</a>
+                    <?php else: ?>
+                        <ul class="user-menu__list">
+                            <li class="user-menu__item">
+                                <a href="#">Регистрация</a>
+                            </li>
+                            <li class="user-menu__item">
+                                <a href="#">Вход</a>
+                            </li>
+                        </ul>
+                    <?php endif; ?>
             </nav>
         </div>
     </header>
 
     <main class="container">
-       <?php print $content; ?>
+        <?php print $content; ?>
     </main>
 </div>
 
 <footer class="main-footer">
-   <?php print $footer; ?>
+     <?php print $footer; ?>
 </footer>
 
 <script src="flatpickr.js"></script>

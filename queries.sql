@@ -15,7 +15,7 @@ INSERT INTO lots
 ("img/lot-3.jpg", 2, "Крепления Union Contact Pro 2015 года размер L/XL", 8000, 1),
 ("img/lot-4.jpg", 3, "Ботинки для сноуборда DC Mutiny Charocal", 10999, 1),
 ("img/lot-5.jpg", 4, "Куртка для сноуборда DC Mutiny Charocal", 7500, 1),
-("img/lot-5.jpg", 6, "Маска Oakley Canopy", 5400, 1);
+("img/lot-6.jpg", 6, "Маска Oakley Canopy", 5400, 1);
 
 INSERT INTO bets
 (bet_price, user_id, lot_id) VALUES
@@ -32,6 +32,8 @@ SELECT * FROM lots LEFT JOIN categories AS c ON lots.category_id = c.id WHERE lo
 UPDATE lots SET name='2014 Rossignol District Snowboard.' WHERE id=1;
 
 SELECT * FROM bets WHERE lot_id = 4 ORDER BY created_at ASC;
+
+SELECT name FROM categories;
 
 -- SELECT u.name, l.name FROM lots as l
 -- LEFT JOIN users as u ON l.user_id=u.id

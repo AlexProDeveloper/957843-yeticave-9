@@ -12,6 +12,7 @@ $sql_2 = 'SELECT category_id, url, name, start_price, ended_at FROM lots';
 $result_2 = mysqli_query($con, $sql_2);
 $goods = mysqli_fetch_all($result_2, MYSQLI_ASSOC);
 
+
 $content = include_template("index.php", ["goods" => $goods, "categories" => $categories]);
 $footer = include_template("footer.php", ["categories" => $categories]);
 print include_template("layout.php", ["title" => "Главная", "content" => $content, "footer" => $footer]);

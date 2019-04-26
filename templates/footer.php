@@ -3,9 +3,9 @@
         <?php foreach ($categories as $category) { ?>
             <!--заполните этот список из массива категорий-->
             <li class="nav__item">
-                <a href="pages/all-lots.html"><?php print $category[name]; ?></a>
+                <a href="pages/all-lots.html"><?php print htmlspecialchars($category[name]); ?></a>
             </li>
-        <?php } ?>
+        <?php }  ?>
     </ul>
 </nav>
 <div class="main-footer__bottom container">

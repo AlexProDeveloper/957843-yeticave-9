@@ -12,3 +12,9 @@ function asCurrancy($number) {
     $fixedNumber = number_format($number, "0", "", " ");
     return ($fixedNumber . " <b class=\"rub\">р</b>");
 }
+
+// function getDataAll(obj $link, string $sql, array $param) {
+//     mysqli_set_charset($link, 'utf8');
+//     $result = mysqli_query($link, $sql);
+//     $param = mysqli_fetch_all($result, MYSQLI_ASSOC);
+// }

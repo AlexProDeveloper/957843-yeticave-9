@@ -6,7 +6,7 @@
 
         <?php foreach ($categories  as $category) { ?>
             <li class="promo__item promo__item--boards">
-                <a  class="promo__link" href="pages/all-lots.html"><?php print mysqli_real_escape_string(mysqli_connect('localhost', 'root', '', 'YetiCave'), $category[name]); ?></a>
+                <a  class="promo__link" href="pages/all-lots.html"><?php print mysqli_real_escape_string(mysqli_connect('localhost', 'root', '', 'YetiCave'), htmlspecialchars($category[name])); ?></a>
             </li>
         <?php }  ?>
     </ul>
@@ -20,15 +20,15 @@
         <?php foreach ($goods as $good) { ?>
             <li class="lots__item lot">
                 <div class="lot__image">
-                    <img src="<?= mysqli_real_escape_string(mysqli_connect('localhost', 'root', '', 'YetiCave'),$good["url"]); ?>" width="350" height="260" alt="">
+                    <img src="<?= mysqli_real_escape_string(mysqli_connect('localhost', 'root', '', 'YetiCave'), htmlspecialchars($good["url"])); ?>" width="350" height="260" alt="">
                 </div>
                 <div class="lot__info">
-                    <span class="lot__category"><?= mysqli_real_escape_string(mysqli_connect('localhost', 'root', '', 'YetiCave'), $good["category_id"]); ?></span>
-                    <h3 class="lot__title"><a class="text-link" href="templates\lot2.php"><?= mysqli_real_escape_string(mysqli_connect('localhost', 'root', '', 'YetiCave'),$good["name"]); ?></a></h3>
+                    <span class="lot__category"><?= mysqli_real_escape_string(mysqli_connect('localhost', 'root', '', 'YetiCave'), htmlspecialchars($good["category_id"])); ?></span>
+                    <h3 class="lot__title"><a class="text-link" href="templates\lot2.php"><?= mysqli_real_escape_string(mysqli_connect('localhost', 'root', '', 'YetiCave'), htmlspecialchars($good["name"])); ?></a></h3>
                      <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?= asCurrancy(mysqli_real_escape_string(mysqli_connect('localhost', 'root', '', 'YetiCave'),$good["start_price"])); ?></span>
+                            <span class="lot__cost"><?= asCurrancy(mysqli_real_escape_string(mysqli_connect('localhost', 'root', '', 'YetiCave'), htmlspecialchars($good["start_price"]))); ?></span>
                         </div>
                         <?php if(getTime() <= 1) { ?>
                         <div class="lot__timer timer timer--finishing">

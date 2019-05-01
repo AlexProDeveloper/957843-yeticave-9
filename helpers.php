@@ -28,6 +28,8 @@ function is_date_valid(string $date) : bool {
  * @return mysqli_stmt Подготовленное выражение
  */
 function db_get_prepare_stmt($link, $sql, $data = []) {
+    //SELECT * FROM users WHERE user = ? AND user_name = ?
+    // data = [1, "name"]
     $stmt = mysqli_prepare($link, $sql);
     if ($stmt === false) {
         $errorMsg = 'Не удалось инициализировать подготовленное выражение: ' . mysqli_error($link);

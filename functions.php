@@ -1,11 +1,29 @@
  <?php
 
-function getTime() {
+ function getTime($date) {
     $midnight = date_create("tomorrow midnight");
-    $today = date_create("now");
-    $diff = date_diff($today, $midnight);
+    $date = date_create($date);
+    $diff = date_diff($date, $midnight);
     $currentDiff = date_interval_format($diff, "%h<span>:</span>%I");
     return $currentDiff;
+}
+
+
+ function getTime2() {
+     $midnight = date_create("tomorrow midnight");
+     $today = date_create("now");
+     $diff = date_diff($today, $midnight);
+     $currentDiff = date_interval_format($diff, "%h<span>:</span>%I");
+     return $currentDiff;
+ }
+
+
+function isDead($date) {
+    $result = false;
+    if(getTime($date) <= 1) {
+        $result = true;
+    }
+    return $result;
 }
 
 function asCurrancy($number) {
@@ -13,8 +31,16 @@ function asCurrancy($number) {
     return ($fixedNumber . " <b class=\"rub\">р</b>");
 }
 
-// function getDataAll(obj $link, string $sql, array $param) {
-//     mysqli_set_charset($link, 'utf8');
-//     $result = mysqli_query($link, $sql);
-//     $param = mysqli_fetch_all($result, MYSQLI_ASSOC);
-// }
+ function getDataAll($link, $sql, $param) {
+     $stmt = db_get_prepare_stmt($link, $sql, $param);
+     mysqli_stmt_execute($stmt);
+     $result = mysqli_stmt_get_result($stmt);
+     return mysqli_fetch_all($result, MYSQLI_ASSOC);
+ }
+
+ function getDataOne($link, $sql, $param) {
+     $stmt = db_get_prepare_stmt($link, $sql, $param);
+     mysqli_stmt_execute($stmt);
+     $result = mysqli_stmt_get_result($stmt);
+     return mysqli_fetch_assoc($result);
+ }

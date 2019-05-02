@@ -43,3 +43,14 @@ SELECT name FROM categories;
 --
 -- SELECT * FROM categories;
 
+--
+-- SELECT l.*, (SELECT MAX(bet_price)
+-- FROM bets WHERE lot_id=l.id) as price FROM lots  AS l
+-- LEFT JOIN categories AS c ON l.category_id=c.id
+-- LEFT JOIN categories ON categories.id = lots.category_id
+-- WHERE l.id = ?
+
+SELECT lots.*, categories.name as cat, bets.bet_price as price from lots
+LEFT JOIN bets ON lots.id = bets.user_id
+LEFT JOIN categories ON categories.id = lots.category_id
+

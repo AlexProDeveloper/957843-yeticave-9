@@ -31,7 +31,7 @@
                             <span class="lot__cost"><?= asCurrancy($good["start_price"]); ?></span>
                         </div>
                         <div class="lot__timer timer <?= (isDead($good['ended_at'])) ? 'timer--finishing' : ''; ?> ">
-                            <?= getTime2(); ?>
+                            <?= getTime($bet['bet_price']); ?>
                         </div>
                     </div>
             </li>

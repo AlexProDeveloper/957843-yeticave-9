@@ -8,16 +8,6 @@
     return $currentDiff;
 }
 
-
- function getTime2() {
-     $midnight = date_create("tomorrow midnight");
-     $today = date_create("now");
-     $diff = date_diff($today, $midnight);
-     $currentDiff = date_interval_format($diff, "%h<span>:</span>%I");
-     return $currentDiff;
- }
-
-
 function isDead($date) {
     $result = false;
     if(getTime($date) <= 1) {

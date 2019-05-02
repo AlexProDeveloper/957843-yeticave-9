@@ -21,6 +21,12 @@ function asCurrancy($number) {
     return ($fixedNumber . " <b class=\"rub\">р</b>");
 }
 
+ function asCurrancy2($number) {
+     $fixedNumber = number_format($number, "0", "", " ");
+     return $fixedNumber;
+ }
+
+
  function getDataAll($link, $sql, $param) {
      $stmt = db_get_prepare_stmt($link, $sql, $param);
      mysqli_stmt_execute($stmt);

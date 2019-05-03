@@ -16,16 +16,18 @@ function isDead($date) {
     return $result;
 }
 
+function isOver($date) {
+     $result = false;
+     if(getTime($date) > 0) {
+         $result = true;
+     }
+     return $result;
+}
+
 function asCurrancy($number) {
     $fixedNumber = number_format($number, "0", "", " ");
     return ($fixedNumber . " <b class=\"rub\">р</b>");
 }
-
- function asCurrancy2($number) {
-     $fixedNumber = number_format($number, "0", "", " ");
-     return $fixedNumber;
- }
-
 
  function getDataAll($link, $sql, $param) {
      $stmt = db_get_prepare_stmt($link, $sql, $param);

@@ -31,7 +31,8 @@ CREATE TABLE lots(
     name CHAR(100) UNIQUE,
     description TEXT,
     start_price FLOAT,
-    ended_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ended_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    step FLOAT
 );
 
 CREATE TABLE categories (

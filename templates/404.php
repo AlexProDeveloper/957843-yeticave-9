@@ -1,7 +1,13 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: alex
- * Date: 01.05.2019
- * Time: 21:50
- */
+<nav class="nav">
+            <ul class="nav__list container">
+                <?php foreach ($categories as $category) { ?>
+                    <li class="nav__item">
+                        <a href="all-lots.html"><?= $category['name']; ?></a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </nav>
+        <section class="lot-item container">
+            <h2>404 Страница не найдена</h2>
+            <p>Данной страницы не существует на сайте.</p>
+        </section>

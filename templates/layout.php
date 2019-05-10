@@ -43,6 +43,9 @@
     </header>
     <main class="container">
         <?php print $content; ?>
+        <?php if($is_auth) {
+         //   print $auth;
+        } ?>
     </main>
 </div>
 

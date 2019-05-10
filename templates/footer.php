@@ -8,7 +8,7 @@
         <?php }  ?>
     </ul>
 </nav>
-<div class="main-footer__bottom container">
+<div style="position: relative;" class="main-footer__bottom container">
     <div class="main-footer__copyright">
         <p>© 2019, YetiCave</p>
         <p>Интернет-аукцион сноубордического и горнолыжного снаряжения</p>

@@ -36,6 +36,13 @@ function asCurrancy($number) {
      return mysqli_fetch_all($result, MYSQLI_ASSOC);
  }
 
+ function setData($link, $sql, $param) {
+     $stmt = db_get_prepare_stmt($link, $sql, $param);
+     mysqli_stmt_execute($stmt);
+     echo mysqli_error($link);
+
+ }
+
  function getDataOne($link, $sql, $param) {
      $stmt = db_get_prepare_stmt($link, $sql, $param);
      mysqli_stmt_execute($stmt);

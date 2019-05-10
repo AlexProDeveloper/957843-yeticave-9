@@ -15,10 +15,10 @@ $betHistory = getDataAll($con, 'SELECT * FROM bets as b
 
 if(!empty($good)) {
     $content = include_template("lot.php", ["good" => $good, "categories" => $categories, "betHistory" => $betHistory]);
-   // $auth = include_template("auth.php", ["good" => $good]);
+  //  $auth = include_template("auth.php", ["good" => $good]);
 } else {
     $content = include_template('404.php', ["categories" => $categories]);
 }
 
 $footer = include_template("footer.php", ["categories" => $categories]);
-print include_template("layout.php", ["title" => "Главная", "content" => $content, /* "auth" => $auth, */ "footer" => $footer]);
+print include_template("layout.php", ["title" => "Просмотр лота", "content" => $content,  /*"auth" => $auth, */ "footer" => $footer]);

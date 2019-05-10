@@ -3,11 +3,12 @@ require 'helpers.php';
 require 'functions.php';
 require 'init.php';
 require 'data.php';
+
 $required_fields = ['name', 'category_id', 'description', 'url', 'start_price', 'step', 'ended_at'];
 $errors = [];
 
 foreach ($required_fields as $field ) {
-    if (empty($_POST[$field])) {
+    if (trim($_POST[$field]) == "") {
         $errors[$field] = 'Заполните это поле!';
     }
     $_POST['start_price'] = (int)$_POST['start_price'];
@@ -51,7 +52,6 @@ if(!$errors ) {
         $_POST['description'],
         $_POST['ended_at']
     ]);
-
 }
 
 $categories = getDataAll($con, 'SELECT * FROM categories', []);

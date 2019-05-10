@@ -41,6 +41,8 @@ if(!$errors) {
         $_POST['name'],
         $_POST['contacts']
     ]);
+    header('Location: index.php');
+
 }
 
 $categories = getDataAll($con, 'SELECT * FROM categories', []);

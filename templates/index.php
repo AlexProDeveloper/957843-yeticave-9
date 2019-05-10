@@ -19,7 +19,7 @@
         <?php foreach ($goods as $good) { ?>
             <li class="lots__item lot">
                 <div class="lot__image">
-                    <img src="<?= htmlspecialchars($good["url"]); ?>" width="350" height="260" alt="">
+                    <img src="/uploads/<?= htmlspecialchars($good["url"]); ?>" width="350" height="260" alt="">
                 </div>
                 <div class="lot__info">
                     <span class="lot__category"><?= htmlspecialchars($good["cat"]); ?></span>

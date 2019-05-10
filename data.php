@@ -14,3 +14,4 @@ $user_name = 'Саша'; // укажите здесь ваше имя
 //    ["name" => "Маска Oakley Canopy", "category" => "Разное", "price" => 5400, "url" => "img/lot-6.jpg"]
 //];
 
+

@@ -26,7 +26,7 @@ function isOver($date) {
 
 function asCurrancy($number) {
     $fixedNumber = number_format($number, "0", "", " ");
-    return ($fixedNumber . " <b class=\"rub\">р</b>");
+    return ($fixedNumber . "<b class=\"rub\">р</b>");
 }
 
  function getDataAll($link, $sql, $param) {

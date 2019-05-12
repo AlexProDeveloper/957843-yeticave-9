@@ -8,6 +8,8 @@ $post_required_fields = ['name', 'category_id', 'description', 'start_price', 's
 $file_required_fields = ['url'];
 $errors = [];
 
+$user_id = $_SESSION['user']['id'];
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     foreach ($file_required_fields as $field) {
         if (empty($_FILES[$field])) {
@@ -52,13 +54,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $_POST['category_id'],
             $_POST['name'],
             $_POST['start_price'],
-            $_POST['user_id'],
+            $user_id,
             $_POST['step'],
             $_POST['description'],
             $_POST['ended_at']
         ]);
-        header("Location: /index.php");
 
+        setData($con, "INSERT INTO lots (user_id) VALUES (?)", []);
+        header("Location: /");
     }
 }
 $categories = getDataAll($con, 'SELECT * FROM categories', []);
@@ -66,7 +69,6 @@ $categories = getDataAll($con, 'SELECT * FROM categories', []);
 
 if (isset($_SESSION['user'])) {
     $content = include_template('add.php', ["categories" => $categories, "errors" => $errors]);
-
 } else {
     $content = include_template('not_auth.php', ["categories" => $categories]);
 }

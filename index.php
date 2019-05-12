@@ -3,6 +3,7 @@ require "data.php";
 require "helpers.php";
 require "functions.php";
 require "init.php";
+//require "login.php";
 
 $categories = getDataAll($con, 'SELECT * FROM categories', []);
 $goods = getDataAll($con, 'SELECT l.*, c.name as cat FROM lots as l LEFT JOIN categories AS c ON l.category_id = c.id', []);

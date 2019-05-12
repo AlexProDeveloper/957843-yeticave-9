@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 $categories = getDataAll($con, 'SELECT * FROM categories', []);
 
 
-if ($is_auth == 1) {
+if (isset($_SESSION['user'])) {
     $content = include_template('add.php', ["categories" => $categories, "errors" => $errors]);
 
 } else {

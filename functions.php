@@ -40,7 +40,6 @@ function asCurrancy($number) {
      $stmt = db_get_prepare_stmt($link, $sql, $param);
      mysqli_stmt_execute($stmt);
      echo mysqli_error($link);
-
  }
 
  function getDataOne($link, $sql, $param) {

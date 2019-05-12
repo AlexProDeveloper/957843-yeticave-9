@@ -25,7 +25,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-
     if (!$errors) {
         $sql = 'INSERT INTO users (email, password, name, contacts) VALUES (?, ?, ?, ?)';
 
@@ -35,10 +34,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_POST['name'],
             $_POST['contacts']
         ]);
-        header('Location: index.php');
+        header('Location: /');
 
     }
 }
+
 $categories = getDataAll($con, 'SELECT * FROM categories', []);
 
 $content = include_template('sign-up.php', ["categories" => $categories, "required_fields" => $required_fields, "errors" => $errors]);

@@ -1,4 +1,4 @@
-<?php  if($is_auth == 1 || isOver($good['ended_at'])) {  ?>
+<?php  if(isset($_SESSION['user']) && isOver($good['ended_at'])) {  ?>
     <div class="lot-item__state">
         <div class="lot-item__timer timer <?= isDead($good['ended_at']) ? 'timer--finishing' : ''; ?>">
             <?= getTime($good['ended_at']); ?>

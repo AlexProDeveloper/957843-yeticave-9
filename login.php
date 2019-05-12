@@ -4,46 +4,47 @@ require 'functions.php';
 require 'init.php';
 require 'data.php';
 
+//session_start();
+
 $errors = [];
-if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    $errors['email'] = 'Некорректный email';
-}
+$required_fields = ['email', 'password'];
 
-if(trim($_POST['password']) == "") {
-    $errors['password'] = 'Заролните это поле';
-}
+if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$user_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-$user_email = $_POST['email'];
-$passwords = getDataAll($con, 'SELECT password FROM users', []);
-$emails = getDataAll($con, 'SELECT email FROM users', []);
-
-session_start();
-if(!$errors) {
-    foreach ($passwords as $password) {
-        if($user_password == $password['password']) {
-            $current_password = true;
-        } else {
-            $errors['password'] = 'Неправильный пароль';
-            $password = false;
+    foreach ($required_fields as $field) {
+        if (trim($_POST[$field]) == "") {
+            $errors[$field] = "Заполните это поле";
+        }
+    }
+    if(!$errors['email']) {
+        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = "Некорректный email";
         }
     }
 
-    foreach ($emails as $email) {
-        if($user_email == $email['email']) {
-            $current_email = true;
+    if(!$errors) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $result = getDataOne($con, 'SELECT * FROM users WHERE email = ?', [$email]);
+        $user = $result ? $result : null;
+    }
+
+    if(!$user) {
+        $errors['email'] = "Пользователь с таким email не найден";
+    }
+
+    if(!$errors && $user) {
+        if(password_verify($_POST['password'], $user['password'])) {
+            $_SESSION['user'] = $user;
+            header('Location: /');
         } else {
-            $errors['email'] = 'Неправильный email';
-            $current_email = false;
+            $errors['password'] = "Неверный пароль";
         }
     }
-    if($current_email == true && $current_password == true) {
-        $is_auth = 1;
-        $user_name = 'sadafdafa';
-    }
- }
+}
+
 $categories = getDataAll($con, 'SELECT * FROM categories', []);
 
-$content = include_template('login.php', ["categories" => $categories, "errors" => $errors]);
+$content = include_template('login.php', ["categories" => $categories, "errors" => $errors, "required_fields" => $required_fields]);
 $footer = include_template("footer.php", ["categories" => $categories]);
 print include_template("layout.php", ["title" => "Вход", "content" => $content, "footer" => $footer]);

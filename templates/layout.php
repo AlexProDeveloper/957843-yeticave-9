@@ -1,4 +1,3 @@
-<?php require 'data.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,9 +22,10 @@
             <a class="main-header__add-lot button" href="add.php">Добавить лот</a>
             <nav class="user-menu">
                 <!-- здесь должен быть PHP код для показа меню и данных пользователя -->
-                <?php if(isset($_SESSION['user'])) { ?>
+
+                <?php if($is_auth) { ?>
                 <div class="user-menu__logged">
-                    <p><?php print htmlspecialchars($_SESSION['user']['name']);?></p>
+                    <p><?php print htmlspecialchars($user_name);?></p>
                     <a class="user-menu__bets" href="my-bets.php">Мои ставки</a>
                     <a class="user-menu__logout" href="../logout.php">Выход</a>
                     <?php } else { ?>

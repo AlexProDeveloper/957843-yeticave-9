@@ -1,8 +1,8 @@
 <div class="message">
     <p>Вы не зарегистрированны или не вошли в свой аккаунт на нашем сайте. Пожалуйста войдите в свой аккаунт или заведите новый.</p>
     <div class="center">
-        <a href="#">Зарегестрироваться</a>
-        <a href="#">Войти на сайт</a>
+        <a href="../sign-up.php">Зарегестрироваться</a>
+        <a href="../login.php">Войти на сайт</a>
     </div>
 </div>
 
@@ -23,7 +23,6 @@
         font-size: 30px;
         text-decoration: none;
         color: #496b8b;
-        margin-right: auto;
     }
 
     .message a:last-child { margin-left: 100px;}

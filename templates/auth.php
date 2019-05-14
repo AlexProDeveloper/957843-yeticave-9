@@ -1,4 +1,4 @@
-<?php  if($is_auth == 1 || isOver($good['ended_at'])) {  ?>
+<?php if($is_auth /*|| isOver($good['ended_at']) */ && $user_id != $user['user_id']) {  ?>
     <div class="lot-item__state">
         <div class="lot-item__timer timer <?= isDead($good['ended_at']) ? 'timer--finishing' : ''; ?>">
             <?= getTime($good['ended_at']); ?>
@@ -9,18 +9,18 @@
                 <span class="lot-item__cost"><?= asCurrancy($good['start_price']); ?></span>
             </div>
             <div class="lot-item__min-cost">
-                Мин. ставка <span><?= asCurrancy($good['start_price'] + $good['price']); ?></span>
-                <?php $currentPrice = $good['start_price'] + $good['price'] ?>
+                Мин. ставка <span><?= asCurrancy($good['start_price'] + $good['step']); ?></span>
+                <?php// $currentPrice = $good['start_price'] + $good['step']; ?>
             </div>
         </div>
-        <!--                <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post" autocomplete="off">-->
-        <!--                    <p class="lot-item__form-item form__item form__item--invalid">-->
-        <!--                        <label for="cost">Ваша ставка</label>-->
-        <!--                        <input id="cost" type="text" name="cost" placeholder="--><?//= $currentPrice; ?><!--">-->
-        <!--                        <span class="form__error">Введите наименование лота</span>-->
-        <!--                    </p>-->
-        <!--                    <button type="submit" class="button">Сделать ставку</button>-->
-        <!--                </form>-->
+        <form class="lot-item__form" action="lot.php?id=<?= $good['id']; ?>" method="post" autocomplete="off">
+            <p class="lot-item__form-item form__item form__item--invalid">
+                <label for="cost">Ваша ставка</label>
+                <input id="cost" type="text" name="cost" placeholder="" value="<?= $_POST['cost']; ?>">
+                <span class="form__error"><?= $errors['cost']; ?></span>
+            </p>
+            <button type="submit" class="button">Сделать ставку</button>
+        </form>
     </div>
-<?php } else {} ?>
+<?php } else {}// var_dump($user_id,$user['user_id']);?>
 

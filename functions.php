@@ -26,7 +26,7 @@ function isOver($date) {
 
 function asCurrancy($number) {
     $fixedNumber = number_format($number, "0", "", " ");
-    return ($fixedNumber . " <b class=\"rub\">р</b>");
+    return ($fixedNumber . "<b class=\"rub\">р</b>");
 }
 
  function getDataAll($link, $sql, $param) {
@@ -40,7 +40,6 @@ function asCurrancy($number) {
      $stmt = db_get_prepare_stmt($link, $sql, $param);
      mysqli_stmt_execute($stmt);
      echo mysqli_error($link);
-
  }
 
  function getDataOne($link, $sql, $param) {

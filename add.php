@@ -66,12 +66,6 @@ if ($is_auth) {
                 $_POST['description'],
                 $_POST['ended_at']
             ]);
-            $lot_id = getDataOne($con, "SELECT id FROM lots ORDER BY id DESC LIMIT 1", []);
-            setData($con, " INSERT INTO bets(user_id, lot_id, bet_price) VALUES (?, ?, ?)", [
-                $user_id,
-                $lot_id['id'],
-                $_POST['step']
-            ]);
             header("Location: /");
         }
 
@@ -80,7 +74,7 @@ if ($is_auth) {
     print include_template("layout.php", ["title" => "Добавление лота", "content" => $content, "is_auth" => $is_auth, "user_name" => $user_name, "footer" => $footer]);
 
 } else {
-    http_response_code(404);
+    http_response_code(403);
     $content = include_template('not_auth.php', ["categories" => $categories]);
     print include_template("layout.php", ["title" => "Добавление лота", "content" => $content, "footer" => $footer]);
 

@@ -3,7 +3,7 @@ require "data.php";
 require "helpers.php";
 require "functions.php";
 require "init.php";
-
+//var_dump($_SESSION);
 $categories = getDataAll($con, 'SELECT * FROM categories', []);
 $goods = getDataAll($con, 'SELECT l.*, c.name as cat FROM lots as l LEFT JOIN categories AS c ON l.category_id = c.id', []);
 $betHistory = getDataAll($con, 'SELECT * FROM bets as b

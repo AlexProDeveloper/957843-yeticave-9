@@ -25,7 +25,9 @@
                     <?php foreach ($betHistory as $bet) { ?>
                         <tr class="history__item">
                             <td class="history__name"><?= $bet['name'] ?></td>
+                            <?php// foreach ($bets as $bet_price) { ?>
                             <td class="history__price"><?= asCurrancy($bet['bet_price']); ?></td>
+                            <?php //} ?>
                             <td class="history__time">5 минут назад</td>
                         </tr>
                     <?php } ?>

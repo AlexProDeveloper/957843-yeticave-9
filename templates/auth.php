@@ -22,5 +22,5 @@
             <button type="submit" class="button">Сделать ставку</button>
         </form>
     </div>
-<?php } else {} ?>
+<?php } else {}// var_dump($user_id,$user['user_id']);?>
 

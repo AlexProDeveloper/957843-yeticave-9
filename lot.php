@@ -16,7 +16,6 @@ $betHistory = getDataAll($con, 'SELECT * FROM bets as b
  LEFT JOIN lots l ON b.lot_id = l.id
  LEFT JOIN users as u ON b.user_id = u.id 
  WHERE b.lot_id = ? ORDER BY bet_price DESC', [$_GET['id']]);
-//$bets = getDataAll($con, "SELECT bet_price FROM bets  WHERE lot_id=? AND user_id=? ORDER BY bet_price LIMIT 1", [$_GET['id'], $user_id]);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_POST['cost'] = (int)$_POST['cost'];
@@ -46,13 +45,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: /lot.php?id=" . $_GET['id']);
     }
 }
+$isMyBet = isMyBet($con, $user_id, $_GET['id']);
 
 if(!empty($good)) {
-    $content = include_template("lot.php", ["good" => $good, "user_id" => $user_id, "user" => $user, "bets" => $bets, "is_auth" => $is_auth, "categories" => $categories, "betHistory" => $betHistory, "errors" => $errors]);
+    $content = include_template("lot.php", [
+        "good" => $good,
+        "user_id" => $user_id,
+        "user" => $user,
+        "isMyBet" => $isMyBet,
+        "is_auth" => $is_auth,
+        "categories" => $categories,
+        "betHistory" => $betHistory,
+        "errors" => $errors
+    ]);
 } else {
     http_response_code(404);
     $content = include_template('404.php', ["categories" => $categories]);
 }
 
-$footer = include_template("footer.php", ["categories" => $categories]);
-print include_template("layout.php", ["title" => "Просмотр лота", "content" => $content, "user_name" => $user_name, "is_auth" => $is_auth, "footer" => $footer]);
+$footer = include_template("footer.php", [
+    "categories" => $categories]);
+print include_template("layout.php", ["title" => "Просмотр лота",
+    "content" => $content, "user_name" => $user_name,
+    "is_auth" => $is_auth,
+    "footer" => $footer
+]);

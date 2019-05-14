@@ -48,3 +48,11 @@ function asCurrancy($number) {
      $result = mysqli_stmt_get_result($stmt);
      return mysqli_fetch_assoc($result);
  }
+
+ function isMyBet($con, $user_id, $lot_id) {
+    $data = getDataOne($con, "SELECT COUNT(id) FROM bets WHERE user_id=? AND lot_id=?" ,[$user_id, $lot_id]);
+    if($data['COUNT(id)'] > 0) {
+        return true;
+    }
+        return false;
+ }

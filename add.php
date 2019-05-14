@@ -6,7 +6,12 @@ require 'init.php';
 $categories = getDataAll($con, 'SELECT * FROM categories', []);
 $footer = include_template("footer.php", ["categories" => $categories]);
 
-if ($is_auth) {
+if (!$is_auth) {
+    http_response_code(403);
+    $content = include_template('not_auth.php', ["categories" => $categories]);
+    print include_template("layout.php", ["title" => "Добавление лота", "content" => $content, "footer" => $footer]);
+    exit;
+}
     $post_required_fields = ['name', 'category_id', 'description', 'start_price', 'step', 'ended_at'];
     $file_required_fields = ['url'];
     $errors = [];
@@ -50,7 +55,7 @@ if ($is_auth) {
             if ($file_type != "image/jpeg" && $file_type != "image/png") {
                 $errors['url'] = 'Некорректный формат изображения!';
             }
-        }
+         }
 
         if (!$errors) {
             $sql = 'INSERT INTO lots (url, category_id, name, start_price, user_id, step, description, ended_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
@@ -72,11 +77,3 @@ if ($is_auth) {
     }
     $content = include_template('add.php', ["categories" => $categories, "errors" => $errors]);
     print include_template("layout.php", ["title" => "Добавление лота", "content" => $content, "is_auth" => $is_auth, "user_name" => $user_name, "footer" => $footer]);
-
-} else {
-    http_response_code(403);
-    $content = include_template('not_auth.php', ["categories" => $categories]);
-    print include_template("layout.php", ["title" => "Добавление лота", "content" => $content, "footer" => $footer]);
-
-}
-

@@ -22,7 +22,7 @@
                 <?= htmlspecialchars($bet['cat']) ?>
             </td>
             <td class="rates__timer">
-                <div class="timer timer--finishing">07:13:34</div>
+                <div class="timer timer--finishing"><?= $bet['ended_at']; ?></div>
             </td>
             <td class="rates__price">
                 <?= htmlspecialchars($bet['bet_price']); ?>

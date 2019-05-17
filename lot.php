@@ -21,7 +21,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_POST['cost'] = (int)$_POST['cost'];
     $good['start_price'] = (int)$good['start_price'];
     $good['step'] = (int)$good['step'];
-    //var_dump($bet_price);
     if (trim($_POST['cost']) == "" || !is_int($_POST['cost']) || empty($_POST['cost'])) {
         $errors['cost'] = "Введите число";
     }
@@ -62,11 +61,13 @@ if(!empty($good)) {
     http_response_code(404);
     $content = include_template('404.php', ["categories" => $categories]);
 }
-
+var_dump($good['ended_at']);
 $footer = include_template("footer.php", [
     "categories" => $categories]);
-print include_template("layout.php", ["title" => "Просмотр лота",
-    "content" => $content, "user_name" => $user_name,
+print include_template("layout.php", [
+    "title" => "Просмотр лота",
+    "content" => $content,
+    "user_name" => $user_name,
     "is_auth" => $is_auth,
     "footer" => $footer
 ]);

@@ -9,3 +9,4 @@ if($_SESSION['user']) {
     $is_auth = true;
     $user_name = $_SESSION['user']['name'];
 }
+

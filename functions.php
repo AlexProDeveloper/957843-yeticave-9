@@ -1,13 +1,12 @@
 <?php
 
- function getTime($date) {
+function getTime($date) {
     $midnight = date_create("tomorrow midnight");
     $date = date_create($date);
     $diff = date_diff($date, $midnight);
     $currentDiff = date_interval_format($diff, "%h<span>:</span>%I");
     return $currentDiff;
 }
-
 function isDead($date) {
     $result = false;
     if(getTime($date) <= 1) {

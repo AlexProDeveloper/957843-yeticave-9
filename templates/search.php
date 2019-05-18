@@ -9,9 +9,10 @@
 </nav>
 <div class="container">
     <section class="lots">
+        <?php if($goods) { ?>
         <h2>Результаты поиска по запросу «<span><?= $search; ?></span>»</h2>
         <ul class="lots__list">
-            <?php if($goods) { foreach ($goods as $good) { ?>
+             <?php foreach ($goods as $good) { ?>
             <li class="lots__item lot">
                 <div class="lot__image">
                     <img src="uploads/<?= htmlspecialchars($good['url']); ?>" width="350" height="260" alt="Сноуборд">
@@ -42,6 +43,6 @@
         <li class="pagination-item pagination-item-next"><a href="#">Вперед</a></li>
     </ul>
     <?php } else { ?>
-        <h2>По вашему запросу ничего не найденно</h2>
+        <h2>По запросу <?= $search; ?> ничего не найденно</h2>
     <?php } ?>
 </div>

@@ -7,7 +7,7 @@
         <?php } ?>
     </ul>
 </nav>
-<div class="container">
+<div class="container mt">
     <section class="lots">
         <?php if($goods) { ?>
         <h2>Результаты поиска по запросу «<span><?= $search; ?></span>»</h2>

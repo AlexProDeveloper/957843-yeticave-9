@@ -3,12 +3,16 @@
         <?php foreach ($categories as $category) { ?>
             <!--заполните этот список из массива категорий-->
             <li class="nav__item">
+<<<<<<< Updated upstream
                 <a href="pages/all-lots.html"><?php print htmlspecialchars($category['name']); ?></a>
+=======
+                <a href="all-lots.php?category_id=<?= $category['id']; ?>"><?php print htmlspecialchars($category['name']); ?></a>
+>>>>>>> Stashed changes
             </li>
         <?php }  ?>
     </ul>
 </nav>
-<div style="position: relative;" class="main-footer__bottom container">
+<div  class="main-footer__bottom container">
     <div class="main-footer__copyright">
         <p>© 2019, YetiCave</p>
         <p>Интернет-аукцион сноубордического и горнолыжного снаряжения</p>

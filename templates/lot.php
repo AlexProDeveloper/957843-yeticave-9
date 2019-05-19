@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?php
 require 'D:\сайты\php\ospanel\domains\localhost\data.php';
 ?>
@@ -6,11 +7,18 @@ require 'D:\сайты\php\ospanel\domains\localhost\data.php';
         <?php foreach ($categories as $category) { ?>
             <li class="nav__item">
                 <a href="all-lots.html"><?= htmlspecialchars($category['name']); ?></a>
+=======
+<nav class="nav nav_top">
+    <ul class="nav__list container">
+        <?php foreach ($categories as $category) { ?>
+            <li class="nav__item">
+                <a href="all-lots.php?category_id=<?= $category['id'];?>"><?= htmlspecialchars($category['name']); ?></a>
+>>>>>>> Stashed changes
             </li>
         <?php } ?>
     </ul>
 </nav>
-<section class="lot-item container">
+<section class="lot-item container mt">
     <h2><?= htmlspecialchars($good['name']);?></h2>
     <div class="lot-item__content">
         <div class="lot-item__left">
@@ -21,9 +29,37 @@ require 'D:\сайты\php\ospanel\domains\localhost\data.php';
             <p class="lot-item__description"><?= htmlspecialchars($good['description']); ?></p>
         </div>
         <div class="lot-item__right">
+<<<<<<< Updated upstream
             <?php require 'auth.php';
             //print $auth;
             ?>
+=======
+            <?php if($is_auth  && $user_id != $user['user_id'] && !$isMyBet && isOver($good['ended_at'])) {  ?>
+                <div class="lot-item__state">
+                    <div class="lot-item__timer timer <?= isDead($good['ended_at']) ? 'timer--finishing' : ''; ?>">
+                        <?= getTime($good['ended_at']); ?>
+                    </div>
+                    <div class="lot-item__cost-state">
+                        <div class="lot-item__rate">
+                            <span class="lot-item__amount">Текущая цена</span>
+                            <span class="lot-item__cost"><?= asCurrancy($good['start_price']); ?></span>
+                        </div>
+                        <div class="lot-item__min-cost">
+                            Мин. ставка <span><?= asCurrancy($good['start_price'] + $good['step']); ?></span>
+                            <?php// $currentPrice = $good['start_price'] + $good['step']; ?>
+                        </div>
+                    </div>
+                    <form class="lot-item__form" action="lot.php?id=<?= $good['id']; ?>" method="post" autocomplete="off">
+                        <p class="lot-item__form-item form__item form__item--invalid">
+                            <label for="cost">Ваша ставка</label>
+                            <input id="cost" type="text" name="cost" placeholder="" value="<?= $_POST['cost']; ?>">
+                            <span class="form__error"><?= $errors['cost']; ?></span>
+                        </p>
+                        <button type="submit" class="button">Сделать ставку</button>
+                    </form>
+                </div>
+            <?php } ?>
+>>>>>>> Stashed changes
             <div class="history">
                 <h3>История ставок (<span><?= count($betHistory); ?></span>)</h3>
                 <table class="history__list">

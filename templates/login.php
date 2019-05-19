@@ -1,13 +1,17 @@
-<nav class="nav">
+<nav class="nav nav_top">
     <ul class="nav__list container">
         <?php foreach ($categories as $category) { ?>
             <li class="nav__item">
-                <a href="all-lots.html"><?= $category['name']; ?></a>
+                <a href="all-lots.php?category_id=<?= $category['id'];?>"><?= htmlspecialchars($category['name']); ?></a>
             </li>
         <?php } ?>
     </ul>
 </nav>
+<<<<<<< Updated upstream
 <form class="form container <?php if(count($errors)) { print 'form--invalid';} ?>" action="login.php" method="post"> <!-- form--invalid -->
+=======
+<form class="mt form container <?php if(count($errors)) { print 'form--invalid';} ?>" action="login.php" enctype="multipart/form-data" method="post"> <!-- form--invalid -->
+>>>>>>> Stashed changes
     <h2>Вход</h2>
     <div class="form__item <?php if($errors['email']) { print 'form__item--invalid';} ?>"> <!-- form__item--invalid -->
         <label for="email">E-mail <sup>*</sup></label>

@@ -1,35 +1,11 @@
-<nav class="nav">
-    <ul class="nav__list container">
-        <?php foreach ($categories as $category) { ?>
-            <li class="nav__item">
-                <a href="all-lots.php?category_id=<?= $category['id'];?>"><?= htmlspecialchars($category['name']); ?></a>
-            </li>
-        <?php } ?>
-    </ul>
-</nav>
-<section class="lots">
-    <?php if(count($goods[0]['count']) > 0) { ?>
-    <h2>Все лоты в категории <span>«<?= $goods[0]['cat']; ?>»</span></h2>
-<ul class="lots__list">
-    <?php foreach ($goods as $good) { ?>
-    <li class="lots__item lot">
-        <div class="lot__image">
-            <img src="/uploads/<?= $good["url"]; ?>" width="350" height="260" alt="Сноуборд">
-        </div>
-        <div class="lot__info">
-            <span class="lot__category"><?= $good['cat']; ?></span>
-            <h3 class="lot__title"><a class="text-link" href="../lot.php?id=<?= $good['lot_id'];?>"><?= $good['name'];?></a></h3>
-            <div class="lot__state">
-                <div class="lot__rate">
-                    <span class="lot__amount">Стартовая цена</span>
-                    <span class="lot__cost"><?= asCurrancy($good['start_price']); ?></span>
-                </div>
-                <div class="lot-item__timer timer <?= isDead($good['ended_at']) ? 'timer--finishing' : ''; ?>">
-                    <?= getTime($good['ended_at']); ?>
-                </div>
-            </div>
-        </div>
-    <?php } } else {?>
-    <h2>В данной категории пока нет лотов</h2>
-    <?php } ?>
-    </section>
+<?php
+require 'init.php';
+require 'helpers.php';
+require 'functions.php';
+
+$categories = getDataAll($con, 'SELECT * FROM categories', []);
+$goods = getDataAll($con, 'SELECT l.*, l.id AS lot_id, c.name cat, (SELECT COUNT(category_id) FROM lots WHERE category_id=?) AS count FROM lots l 
+LEFT JOIN categories c ON l.category_id = c.id WHERE category_id=?', [$_GET['category_id'], $_GET['category_id']]);
+$content = include_template("all-lots.php", ["categories" => $categories, "goods" => $goods]);
+$footer = include_template("footer.php", ["categories" => $categories]);
+print include_template("layout.php", ["title" => "Все лоты", "content" => $content, "footer" => $footer, "user_name" => $user_name,  "is_auth" => $is_auth,]);

@@ -4,7 +4,7 @@
             <li class="nav__item">
                 <a href="all-lots.php"><?= htmlspecialchars($category['name']); ?></a>
             </li>
-        <?php } //var_dump($bets['url']);?>
+        <?php } ?>
     </ul>
 </nav>
 <section class="rates container">

@@ -41,4 +41,5 @@ CREATE TABLE categories (
     code CHAR(20)
 );
 
+CREATE FULLTEXT INDEX search_lots ON lots(name, description);
 

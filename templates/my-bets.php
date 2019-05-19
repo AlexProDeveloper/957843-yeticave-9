@@ -1,13 +1,13 @@
-<nav class="nav nav_top">
+<nav class="nav">
     <ul class="nav__list container">
         <?php foreach ($categories as $category) { ?>
             <li class="nav__item">
-                <a href="all-lots.php?category_id=<?= $category['id'];?>"><?= htmlspecialchars($category['name']); ?></a>
+                <a href="all-lots.php"><?= htmlspecialchars($category['name']); ?></a>
             </li>
         <?php } ?>
     </ul>
 </nav>
-<section class="rates container mt">
+<section class="rates container">
     <h2>Мои ставки</h2>
     <table class="rates__list">
         <?php foreach ($bets as $bet) { ?>
@@ -21,8 +21,8 @@
             <td class="rates__category">
                 <?= htmlspecialchars($bet['cat']) ?>
             </td>
-            <td class="rates__timer timer <?= isDead($bet['ended_at']) ? 'timer--finishing' : ''; ?>">
-                <?= getTime($bet['ended_at']); ?>
+            <td class="rates__timer">
+                <div class="timer timer--finishing"><?= $bet['ended_at']; ?></div>
             </td>
             <td class="rates__price">
                 <?= htmlspecialchars($bet['bet_price']); ?>

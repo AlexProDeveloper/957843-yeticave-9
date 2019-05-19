@@ -1,39 +1,23 @@
-<<<<<<< Updated upstream
-<?php
-require 'D:\сайты\php\ospanel\domains\localhost\data.php';
-?>
 <nav class="nav">
     <ul class="nav__list container">
         <?php foreach ($categories as $category) { ?>
             <li class="nav__item">
-                <a href="all-lots.html"><?= htmlspecialchars($category['name']); ?></a>
-=======
-<nav class="nav nav_top">
-    <ul class="nav__list container">
-        <?php foreach ($categories as $category) { ?>
-            <li class="nav__item">
-                <a href="all-lots.php?category_id=<?= $category['id'];?>"><?= htmlspecialchars($category['name']); ?></a>
->>>>>>> Stashed changes
+                <a href="all-lots.php"><?= htmlspecialchars($category['name']); ?></a>
             </li>
         <?php } ?>
     </ul>
 </nav>
-<section class="lot-item container mt">
+<section class="lot-item container">
     <h2><?= htmlspecialchars($good['name']);?></h2>
     <div class="lot-item__content">
         <div class="lot-item__left">
             <div class="lot-item__image">
-                <img src="<?= htmlspecialchars($good['url']); ?>" width="730" height="548" alt="Сноуборд">
+                <img src="/uploads/<?= htmlspecialchars($good['url']); ?>" width="730" height="548" alt="Сноуборд">
             </div>
             <p class="lot-item__category">Категория: <span><?= $good['cat']; ?></span></p>
             <p class="lot-item__description"><?= htmlspecialchars($good['description']); ?></p>
         </div>
         <div class="lot-item__right">
-<<<<<<< Updated upstream
-            <?php require 'auth.php';
-            //print $auth;
-            ?>
-=======
             <?php if($is_auth  && $user_id != $user['user_id'] && !$isMyBet && isOver($good['ended_at'])) {  ?>
                 <div class="lot-item__state">
                     <div class="lot-item__timer timer <?= isDead($good['ended_at']) ? 'timer--finishing' : ''; ?>">
@@ -58,14 +42,13 @@ require 'D:\сайты\php\ospanel\domains\localhost\data.php';
                         <button type="submit" class="button">Сделать ставку</button>
                     </form>
                 </div>
-            <?php } ?>
->>>>>>> Stashed changes
+            <?php } else {}// var_dump($user_id,$user['user_id']);?>
             <div class="history">
                 <h3>История ставок (<span><?= count($betHistory); ?></span>)</h3>
                 <table class="history__list">
                     <?php foreach ($betHistory as $bet) { ?>
                         <tr class="history__item">
-                            <td class="history__name"><?= $bet['name'] ?></td>
+                            <td class="history__name"><?= $bet['name']; ?></td>
                             <td class="history__price"><?= asCurrancy($bet['bet_price']); ?></td>
                             <td class="history__time">5 минут назад</td>
                         </tr>

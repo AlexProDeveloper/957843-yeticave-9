@@ -5,7 +5,7 @@
         <!--заполните этот список из массива категорий-->
         <?php foreach ($categories  as $category) { ?>
             <li class="promo__item promo__item--<?= htmlspecialchars($category['code']); ?>">
-                <a  class="promo__link" href="pages/all-lots.html"><?= htmlspecialchars($category['name']); ?></a>
+                <a class="promo__link" href="all-lots.php?category_id=<?= $category['id'];?>"><?= htmlspecialchars($category['name']); ?></a>
             </li>
         <?php }  ?>
     </ul>
@@ -30,8 +30,9 @@
                             <span class="lot__cost"><?= asCurrancy($good["start_price"]); ?></span>
                         </div>
                         <div class="lot__timer timer <?= (isDead($good['ended_at'])) ? 'timer--finishing' : ''; ?> ">
-                            <?= getTime($bet['bet_price']); ?>
+                            <?= getTime($good['ended_at']); ?>
                         </div>
+                         <?php //var_dump($bets); ?>
                     </div>
             </li>
         <?php } ?>

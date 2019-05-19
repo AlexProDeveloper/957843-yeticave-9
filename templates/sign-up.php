@@ -1,14 +1,14 @@
-<nav class="nav">
+<nav class="nav nav_top">
     <ul class="nav__list container">
         <?php foreach ($categories as $category) { ?>
             <li class="nav__item">
-                <a href="all-lots.html"><?= $category['name']; ?></a>
+                <a href="all-lots.php?category_id=<?= $category['id'];?>"><?= htmlspecialchars($category['name']); ?></a>
             </li>
         <?php } ?>
     </ul>
 </nav>
 
-<form class="form container <?php if(count($errors)) { print 'form--invalid';} ?>" action="sign-up.php" method="post" autocomplete="off"> <!-- form--invalid -->
+<form class="form mt container <?php if(count($errors)) { print 'form--invalid';} ?>" action="sign-up.php" method="post" autocomplete="off"> <!-- form--invalid -->
     <h2>Регистрация нового аккаунта</h2>
     <div class="form__item <?php if($errors['email']) {print 'form__item--invalid';} ?>"> <!-- form__item--invalid -->
         <label for="email">E-mail <sup>*</sup></label>

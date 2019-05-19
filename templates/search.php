@@ -7,7 +7,7 @@
         <?php } ?>
     </ul>
 </nav>
-<div class="container">
+<div class="container mt">
     <section class="lots">
         <?php if($goods) { ?>
         <h2>Результаты поиска по запросу «<span><?= $search; ?></span>»</h2>
@@ -43,6 +43,6 @@
         <li class="pagination-item pagination-item-next"><a href="#">Вперед</a></li>
     </ul>
     <?php } else { ?>
-        <h2>По запросу <?= $search; ?> ничего не найденно</h2>
+        <h2>По запросу «<?= $search; ?>» ничего не найденно</h2>
     <?php } ?>
 </div>

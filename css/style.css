@@ -373,6 +373,16 @@ main.container {
   border-bottom: 1px solid #e1e6e7;
 }
 
+.mt {
+  margin-top: 60px;
+}
+
+.nav_top {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
 .nav__list {
   display: -webkit-flex;
   display: -ms-flexbox;

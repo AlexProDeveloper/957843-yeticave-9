@@ -8,7 +8,7 @@
     </ul>
 </nav>
 
-<form class="form mt container <?php if(count($errors)) { print 'form--invalid';} ?>" action="sign-up.php" method="post" autocomplete="off"> <!-- form--invalid -->
+<form class="form mt container <?php  if(count($errors)) { print 'form--invalid';} ?>" action="sign-up.php" method="post" autocomplete="off"> <!-- form--invalid -->
     <h2>Регистрация нового аккаунта</h2>
     <div class="form__item <?php if($errors['email']) {print 'form__item--invalid';} ?>"> <!-- form__item--invalid -->
         <label for="email">E-mail <sup>*</sup></label>

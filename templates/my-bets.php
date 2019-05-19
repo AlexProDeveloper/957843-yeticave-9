@@ -31,6 +31,6 @@
                     5 минут назад
                 </td>
             </tr>
-        <?php } ?>
+        <?php }  ?>
     </table>
 </section>

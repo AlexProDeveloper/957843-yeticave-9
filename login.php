@@ -4,8 +4,6 @@ require 'functions.php';
 require 'init.php';
 require 'data.php';
 
-//session_start();
-
 $errors = [];
 $required_fields = ['email', 'password'];
 

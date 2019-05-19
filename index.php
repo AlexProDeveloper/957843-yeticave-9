@@ -13,3 +13,4 @@ $content = include_template("index.php", ["goods" => $goods, "categories" => $ca
 $footer = include_template("footer.php", ["categories" => $categories]);
 print include_template("layout.php", ["title" => "Главная", "content" => $content, "footer" => $footer]);
 
+

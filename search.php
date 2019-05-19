@@ -14,3 +14,4 @@ WHERE MATCH (l.name, description) AGAINST(? IN BOOLEAN MODE)";
 $content = include_template("search.php", ["goods" => $goods, "search" => $search, "categories" => $categories]);
 $footer = include_template("footer.php", ["categories" => $categories]);
 print include_template("layout.php", ["title" => "Главная", "content" => $content, "user_name" => $user_name,  "is_auth" => $is_auth, "footer" => $footer]);
+  

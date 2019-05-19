@@ -61,7 +61,6 @@ if(!empty($good)) {
     http_response_code(404);
     $content = include_template('404.php', ["categories" => $categories]);
 }
-var_dump($good['ended_at']);
 $footer = include_template("footer.php", [
     "categories" => $categories]);
 print include_template("layout.php", [

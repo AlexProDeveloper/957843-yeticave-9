@@ -1,4 +1,4 @@
-<nav class="nav">
+<nav class="nav nav_top">
     <ul class="nav__list container">
         <?php foreach ($categories as $category) { ?>
             <li class="nav__item">

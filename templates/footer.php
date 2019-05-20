@@ -3,7 +3,7 @@
         <?php foreach ($categories as $category) { ?>
             <!--заполните этот список из массива категорий-->
             <li class="nav__item">
-                <a href="all-lots.php"><?php print htmlspecialchars($category['name']); ?></a>
+                <a href="all-lots.php<?= $category['id']; ?>"><?php print htmlspecialchars($category['name']); ?></a>
             </li>
         <?php }  ?>
     </ul>

@@ -1,4 +1,4 @@
-<nav class="nav">
+<nav class="nav nav_top">
     <ul class="nav__list container">
         <?php foreach ($categories as $category) { ?>
             <li class="nav__item">
@@ -7,7 +7,7 @@
         <?php } ?>
     </ul>
 </nav>
-<section class="lot-item container">
+<section class="lot-item container mt">
     <h2><?= htmlspecialchars($good['name']);?></h2>
     <div class="lot-item__content">
         <div class="lot-item__left">

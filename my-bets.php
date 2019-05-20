@@ -6,7 +6,6 @@ require 'functions.php';
 if($is_auth) {
     $user_id = $_SESSION['user']['id'];
     $bets = getDataAll($con, "SELECT c.name as cat, l.*, b.* FROM lots l LEFT JOIN categories c ON l.category_id = c.id LEFT JOIN bets b ON b.lot_id = l.id WHERE b.user_id='$user_id'", []);
-    //var_dump($bets);
 
     $categories = getDataAll($con, 'SELECT * FROM categories', []);
     $content = include_template("my-bets.php", ["goods" => $goods, "categories" => $categories, "bets" => $bets]);

@@ -1,13 +1,13 @@
-<nav class="nav">
+<nav class="nav nav_top">
     <ul class="nav__list container">
         <?php foreach ($categories as $category) { ?>
             <li class="nav__item">
                 <a href="all-lots.php"><?= htmlspecialchars($category['name']); ?></a>
             </li>
-        <?php } //var_dump($bets['url']);?>
+        <?php } ?>
     </ul>
 </nav>
-<section class="rates container">
+<section class="rates container mt">
     <h2>Мои ставки</h2>
     <table class="rates__list">
         <?php foreach ($bets as $bet) { ?>

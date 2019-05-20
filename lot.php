@@ -57,7 +57,7 @@ if(!empty($good)) {
         "betHistory" => $betHistory,
         "errors" => $errors
     ]);
-} else {
+}  else {
     http_response_code(404);
     $content = include_template('404.php', ["categories" => $categories]);
 }

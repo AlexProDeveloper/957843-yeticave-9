@@ -75,5 +75,5 @@ if (!$is_auth) {
         }
 
     }
-    $content = include_template('add.php', ["categories" => $categories, "errors" => $errors]);
-    print include_template("layout.php", ["title" => "Добавление лота", "content" => $content, "is_auth" => $is_auth, "user_name" => $user_name, "footer" => $footer]);
+$content = include_template('add.php', ["categories" => $categories, "errors" => $errors]);
+print include_template("layout.php", ["title" => "Добавление лота", "content" => $content, "is_auth" => $is_auth, "user_name" => $user_name, "footer" => $footer]);

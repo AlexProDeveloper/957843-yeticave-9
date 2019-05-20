@@ -28,5 +28,8 @@ if($ended_lots) {
         // Письма пока не отправляются, браузер выдает такую ошибку:
         // Fatal error: in W:\domains\localhost\vendor\swiftmailer\swiftmailer\lib\classes\Swift\Transport\StreamBuffer.php on line 269
         //$result = $mailer->send($message);
+       // if ($result) {
+       //     setData($con, "UPDATE lots SET winner_id=? WHERE id=?", [$lot['win_user_id'], $lot['id']]);
+      //  }
     }
 }

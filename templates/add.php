@@ -1,4 +1,4 @@
- <nav class="nav">
+ <nav class="nav nav_top">
           <ul class="nav__list container">
               <?php foreach ($categories as $category_id) { ?>
                   <li class="nav__item">
@@ -6,8 +6,8 @@
                   </li>
               <?php } ?>
           </ul>
-      </nav>
-    <form action="add.php" enctype="multipart/form-data" method="post" class="form form--add-lot container <?= (count($errors)) ? 'form--invalid' : ''; ?> ">  <!-- form--invalid -->
+ </nav>
+    <form action="add.php" enctype="multipart/form-data" method="post" class="mt form form--add-lot container <?= (count($errors)) ? 'form--invalid' : ''; ?> ">  <!-- form--invalid -->
         <h2>Добавление лота</h2>
         <div class="form__container-two">
             <div class="form__item <?php if($errors['name']) { print 'form__item--invalid';  } ?>"> <!-- form__item--invalid -->

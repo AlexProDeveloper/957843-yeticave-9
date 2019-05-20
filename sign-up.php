@@ -5,6 +5,7 @@ require 'init.php';
 
 $required_fields = ['email', 'password', 'name', 'contacts'];
 $errors = [];
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     foreach ($required_fields as $field) {
         if (trim($_POST[$field]) == "") {

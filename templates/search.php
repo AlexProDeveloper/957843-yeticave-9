@@ -1,13 +1,3 @@
-<nav class="nav nav_top">
-    <ul class="nav__list container">
-        <?php foreach ($categories as $category) { ?>
-            <li class="nav__item">
-                <a href="all-lots.php?category_id=<?= $category['id']; ?>"><?= htmlspecialchars($category['name']); ?></a>
-            </li>
-        <?php } ?>
-    </ul>
-</nav>
-<div class="container mt">
     <nav class="nav nav_top">
         <ul class="nav__list container">
             <?php foreach ($categories as $category) { ?>
@@ -53,6 +43,5 @@
             <li class="pagination-item pagination-item-next"><a href="#">Вперед</a></li>
         </ul>
         <?php } else { ?>
-            <h2>По запросу <?= $search; ?> ничего не найденно</h2>
+            <h2>По запросу «<span><?= $search; ?></span>» ничего не найденно</h2>
         <?php } ?>
-    </div>

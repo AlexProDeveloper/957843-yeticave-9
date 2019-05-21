@@ -7,7 +7,7 @@
         <?php } ?>
     </ul>
 </nav>
-<section class="lot-item container mt">
+<section class="lot-item container">
     <h2><?= htmlspecialchars($good['name']);?></h2>
     <div class="lot-item__content">
         <div class="lot-item__left">

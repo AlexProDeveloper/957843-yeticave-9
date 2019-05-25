@@ -30,19 +30,18 @@
                         </div>
                         <div class="lot-item__min-cost">
                             Мин. ставка <span><?= asCurrancy($good['start_price'] + $good['step']); ?></span>
-                            <?php// $currentPrice = $good['start_price'] + $good['step']; ?>
                         </div>
                     </div>
                     <form class="lot-item__form" action="lot.php?id=<?= $good['id']; ?>" method="post" autocomplete="off">
                         <p class="lot-item__form-item form__item form__item--invalid">
                             <label for="cost">Ваша ставка</label>
-                            <input id="cost" type="text" name="cost" placeholder="" value="<?= $_POST['cost']; ?>">
-                            <span class="form__error"><?= $errors['cost']; ?></span>
+                            <input id="cost" type="text" name="cost" placeholder="" value="<?php if (isset($_POST['cost'])) { $_POST['cost']; } ?>">
+                            <span class="form__error"><?= $errors; ?></span>
                         </p>
                         <button type="submit" class="button">Сделать ставку</button>
                     </form>
                 </div>
-            <?php } else {}// var_dump($user_id,$user['user_id']);?>
+            <?php } else {}?>
             <div class="history">
                 <h3>История ставок (<span><?= count($betHistory); ?></span>)</h3>
                 <table class="history__list">
@@ -50,7 +49,7 @@
                         <tr class="history__item">
                             <td class="history__name"><?= $bet['name']; ?></td>
                             <td class="history__price"><?= asCurrancy($bet['bet_price']); ?></td>
-                            <td class="history__time">5 минут назад</td>
+                            <td class="history__time"><?= getBetTime($bet['bet_create']); ?></td>
                         </tr>
                     <?php } ?>
                 </table>

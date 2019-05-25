@@ -2,7 +2,6 @@
     <h2 class="promo__title">Нужен стафф для катки?</h2>
     <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
     <ul class="promo__list">
-        <!--заполните этот список из массива категорий-->
         <?php foreach ($categories  as $category) { ?>
             <li class="promo__item promo__item--<?= htmlspecialchars($category['code']); ?>">
                 <a class="promo__link" href="all-lots.php?category_id=<?= $category['id'];?>"><?= htmlspecialchars($category['name']); ?></a>
@@ -15,7 +14,6 @@
         <h2>Открытые лоты</h2>
     </div>
     <ul class="lots__list">
-        <!--заполните этот список из массива с товарами-->
         <?php foreach ($goods as $good) { ?>
             <li class="lots__item lot">
                 <div class="lot__image">
@@ -32,7 +30,6 @@
                         <div class="lot__timer timer <?= (isDead($good['ended_at'])) ? 'timer--finishing' : ''; ?> ">
                             <?= getTime($good['ended_at']); ?>
                         </div>
-                         <?php //var_dump($bets); ?>
                     </div>
             </li>
         <?php } ?>

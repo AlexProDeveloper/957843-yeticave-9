@@ -12,7 +12,7 @@
     <div class="form__container-two">
         <div class="form__item <?php if($errors['name']) { print 'form__item--invalid';  } ?>"> <!-- form__item--invalid -->
             <label for="name">Наименование <sup>*</sup></label>
-            <input id="name" type="text" name="name" placeholder="Введите наименование лота" value="<?= $_POST['name']; ?>" >
+            <input id="name" type="text" name="name" placeholder="Введите наименование лота" value="<?php if (isset($_POST['name'])) { print $_POST['name']; }?>" >
             <span class="form__error"><?= $errors['name']; ?></span>
         </div>
         <div class="form__item <?php if($errors['category_id']) { print 'form__item--invalid'; }?>">
@@ -30,7 +30,7 @@
     </div>
     <div class="form__item form__item--wide <?php if($errors['description']) { print 'form__item--invalid'; }?>">
         <label for="message">Описание <sup>*</sup></label>
-        <textarea id="message" name="description" placeholder="Напишите описание лота"><?=$_POST['description']; ?></textarea>
+        <textarea id="message" name="description" placeholder="Напишите описание лота"><?php if (isset($_POST['description'])) { print $_POST['description']; } ?></textarea>
         <span class="form__error"><?= $errors['description']; ?></span>
     </div>
     <div class="form__item form__item--file <?php if($errors['url']) { print 'form__item--invalid'; }?>">
@@ -47,17 +47,17 @@
     <div class="form__container-three">
         <div class="form__item form__item--small <?php if($errors['start_price']) { print 'form__item--invalid'; }?>">
             <label for="start_price">Начальная цена <sup>*</sup></label>
-            <input id="start_price" type="text" name="start_price" placeholder="0" value="<?= $_POST['start_price']; ?>">
+            <input id="start_price" type="text" name="start_price" placeholder="0" value="<?php if (isset($_POST['start_price'])) { print $_POST['start_price']; } ?>">
             <span class="form__error"><?=$errors['start_price']; ?></span>
         </div>
         <div class="form__item form__item--small <?php if($errors['step']) { print 'form__item--invalid'; }?>">
             <label for="step">Шаг ставки <sup>*</sup></label>
-            <input id="step" type="text" name="step" placeholder="0" value="<?= $_POST['step']; ?>">
+            <input id="step" type="text" name="step" placeholder="0" value="<?php if (isset($_POST['step'])) { print $_POST['step']; } ?>">
             <span class="form__error"><?= $errors['step']; ?></span>
         </div>
         <div class="form__item <?php if($errors['ended_at']) { print 'form__item--invalid'; }?>">
             <label for="ended_at">Дата окончания торгов <sup>*</sup></label>
-            <input class="form__input-date" id="ended_at" type="text" name="ended_at" placeholder="Введите дату в формате ГГГГ-ММ-ДД" value="<?= $_POST['ended_at']; ?>">
+            <input class="form__input-date" id="ended_at" type="text" name="ended_at" placeholder="Введите дату в формате ГГГГ-ММ-ДД" value="<?php if (isset($_POST['ended_at'])) { print $_POST['ended_at']; } ?>">
             <span class="form__error"><?= $errors['ended_at']; ?></span>
         </div>
     </div>

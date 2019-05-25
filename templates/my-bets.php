@@ -11,24 +11,27 @@
     <h2>Мои ставки</h2>
     <table class="rates__list">
         <?php foreach ($bets as $bet) { ?>
-            <tr class="rates__item">
+            <tr class="rates__item  <?php if ($bet['winner_id'] === $_SESSION['user']['id']) { print 'rates__item--win';} ?>">
                 <td class="rates__info">
                     <div class="rates__img">
                         <img src="uploads/<?= $bet['url']; ?>" width="54" height="40" alt="Сноуборд">
                     </div>
-                    <h3 class="rates__title"><a href="lot.php?id=<?= $bet['lot_id'];?>"><?= htmlspecialchars($bet['name']); ?></a></h3>
+                    <h3 class="rates__title">
+                        <a href="lot.php?id=<?= $bet['lot_id'];?>"><?= htmlspecialchars($bet['name']); ?></a>
+                        <?php if ($bet['winner_id'] === $_SESSION['user']['id']) { print "<p>" . $bet['description'] . "</p>"; } ?>
+                    </h3>
                 </td>
                 <td class="rates__category">
                     <?= htmlspecialchars($bet['cat']) ?>
                 </td>
                 <td class="rates__timer">
-                    <div class="timer timer--finishing"><?= $bet['ended_at']; ?></div>
+                    <div class="timer  <?php if (isDead($bet['ended_at']) && $bet['winner_id'] !== $_SESSION['user']['id']) { print 'timer--finishing'; } elseif ($bet['winner_id'] === $_SESSION['user']['id']) { print 'timer--win';} ?>"><?php if ($bet['winner_id'] === $_SESSION['user']['id']) { print 'Стака сыграла'; } else { print  getTime($bet['ended_at']); } ?></div>
                 </td>
                 <td class="rates__price">
-                    <?= htmlspecialchars($bet['bet_price']); ?>
+                    <?= asCurrancy($bet['bet_price']); ?>
                 </td>
                 <td class="rates__time">
-                    5 минут назад
+                    <?= getBetTime($bet['bet_create']); ?>
                 </td>
             </tr>
         <?php }  ?>

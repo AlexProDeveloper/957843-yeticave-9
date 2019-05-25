@@ -5,10 +5,11 @@ require 'init.php';
 
 $required_fields = ['email', 'password', 'name', 'contacts'];
 $errors = [];
-
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+$password = "";
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $user_password = $_POST['password'];
     foreach ($required_fields as $field) {
-        if (trim($_POST[$field]) == "") {
+        if (trim($_POST[$field]) === "") {
             $errors[$field] = 'Поле должно быть заполнено';
         }
     }
@@ -17,11 +18,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['email'] = 'Некорректный email';
     }
 
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    if (isset($_POST['password'])) {
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    }
 
     $emails = getDataAll($con, 'SELECT email FROM users', []);
     foreach ($emails as $email) {
-        if ($_POST['email'] == $email['email']) {
+        if ($_POST['email'] === $email['email']) {
             $errors['email'] = 'Пользователь с таким email уже существует';
         }
     }
@@ -42,6 +45,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $categories = getDataAll($con, 'SELECT * FROM categories', []);
 
-$content = include_template('sign-up.php', ["categories" => $categories, "required_fields" => $required_fields, "errors" => $errors]);
+$content = include_template('sign-up.php', [
+    "categories" => $categories,
+    "required_fields" => $required_fields,
+    "errors" => $errors
+]);
 $footer = include_template("footer.php", ["categories" => $categories]);
-print include_template("layout.php", ["title" => "Регистрация", "content" => $content, "footer" => $footer]);
+print include_template("layout.php", [
+    "title" => "Регистрация",
+    "content" => $content,
+    "footer" => $footer
+]);

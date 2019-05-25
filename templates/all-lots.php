@@ -8,7 +8,7 @@
     </ul>
 </nav>
 <section class="lots mt">
-    <?php if(count($goods[0]['count']) > 0) { ?>
+    <?php if(count($goods) > 0) { ?>
     <h2>Все лоты в категории <span>«<?= $goods[0]['cat']; ?>»</span></h2>
     <ul class="lots__list">
         <?php foreach ($goods as $good) { ?>

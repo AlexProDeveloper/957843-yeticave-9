@@ -1,0 +1,12 @@
+{
+    "name": "alex/localhost",
+    "authors": [
+        {
+            "name": "AlexProDeveloper",
+            "email": "alex_1998_plekhanov@mail.ru"
+        }
+    ],
+    "require": {
+        "swiftmailer/swiftmailer": "^6.2"
+    }
+}

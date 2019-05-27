@@ -116,11 +116,16 @@ function getDataOne($link, $sql, $param)
  */
 function isMyBet($link, $user_id, $lot_id)
 {
-    $data = getDataOne($link, "SELECT COUNT(id) FROM bets WHERE user_id=? AND lot_id=?", [$user_id, $lot_id]);
-    if ($data['COUNT(id)'] > 0) {
-        return true;
+    $result = false;
+    $data = getDataOne($link, "SELECT MAX(bet_price) AS user_price FROM bets WHERE user_id = ? AND lot_id = ?", [$user_id, $lot_id]);
+    $max_price = getDataOne($link, "SELECT MAX(bet_price) AS max_price FROM bets WHERE lot_id = ?", [$lot_id]);
+    if ($data['user_price'] === $max_price['max_price']) {
+        $result =  true;
     }
-    return false;
+    if ($max_price['max_price'] === null) {
+        $result = false;
+    }
+    return $result;
 }
 
 /**

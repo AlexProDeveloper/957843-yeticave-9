@@ -21,8 +21,6 @@
             </form>
             <a class="main-header__add-lot button" href="add.php">Добавить лот</a>
             <nav class="user-menu">
-                <!-- здесь должен быть PHP код для показа меню и данных пользователя -->
-
                 <?php if(isset($_SESSION['user'])) { ?>
                 <div class="user-menu__logged">
                     <p><?php print htmlspecialchars($user_name);?></p>

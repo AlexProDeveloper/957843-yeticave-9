@@ -18,7 +18,7 @@
             <p class="lot-item__description"><?= htmlspecialchars($good['description']); ?></p>
         </div>
         <div class="lot-item__right">
-            <?php if($is_auth  && $user_id != $user['user_id'] && !$isMyBet && isOver($good['ended_at'])) {  ?>
+            <?php if($is_auth && $user_id !== $user['user_id'] && !$isMyBet && isOver($good['ended_at'])) {  ?>
                 <div class="lot-item__state">
                     <div class="lot-item__timer timer <?= isDead($good['ended_at']) ? 'timer--finishing' : ''; ?>">
                         <?= getTime($good['ended_at']); ?>
@@ -36,18 +36,18 @@
                         <p class="lot-item__form-item form__item form__item--invalid">
                             <label for="cost">Ваша ставка</label>
                             <input id="cost" type="text" name="cost" placeholder="" value="<?php if (isset($_POST['cost'])) { $_POST['cost']; } ?>">
-                            <span class="form__error"><?= $errors; ?></span>
+                            <span class="form__error"><?php if ($errors !== '') { print $errors; } ?></span>
                         </p>
                         <button type="submit" class="button">Сделать ставку</button>
                     </form>
                 </div>
-            <?php } else {}?>
+            <?php } ?>
             <div class="history">
                 <h3>История ставок (<span><?= count($betHistory); ?></span>)</h3>
                 <table class="history__list">
                     <?php foreach ($betHistory as $bet) { ?>
                         <tr class="history__item">
-                            <td class="history__name"><?= $bet['name']; ?></td>
+                            <td class="history__name"><?= htmlspecialchars($bet['name']); ?></td>
                             <td class="history__price"><?= asCurrancy($bet['bet_price']); ?></td>
                             <td class="history__time"><?= getBetTime($bet['bet_create']); ?></td>
                         </tr>

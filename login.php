@@ -8,25 +8,29 @@ $required_fields = ['email', 'password'];
 $user = null;
 $email = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = $_POST['email'];
     foreach ($required_fields as $field) {
-        if (trim($_POST[$field]) == "") {
-            $errors[$field] = "Заполните это поле";
+        if (isset($_POST[$field]) && trim($_POST[$field]) === "") {
+            $errors[$field] = 'Поле должно быть заполнено';
         }
     }
-    if (!$email) {
-        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+
+    if (isset($_POST['email'])) {
+        $email = $_POST['email'];
+    }
+
+    if (isset($_POST['email']) && $email) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errors['email'] = "Некорректный email";
         }
     }
 
-    if (!$errors) {
+    if (!$errors && isset($_POST['password'])) {
         $password = $_POST['password'];
         $result = getDataOne($con, 'SELECT * FROM users WHERE email = ?', [$email]);
         $user = $result;
     }
 
-    if (!$user) {
+    if (!$user && filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Пользователь с таким email не найден";
     }
 

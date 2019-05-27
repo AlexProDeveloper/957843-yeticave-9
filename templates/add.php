@@ -50,7 +50,7 @@
             <input id="start_price" type="text" name="start_price" placeholder="0" value="<?php if (isset($_POST['start_price'])) { print $_POST['start_price']; } ?>">
             <span class="form__error"><?php if (isset($errors['start_price'])) { print $errors['start_price']; } ?></span>
         </div>
-        <div class="form__item form__item--small <?php if ($errors['step']) { print 'form__item--invalid'; }?>">
+        <div class="form__item form__item--small <?php if (isset($errors['step'])) { print 'form__item--invalid'; }?>">
             <label for="step">Шаг ставки <sup>*</sup></label>
             <input id="step" type="text" name="step" placeholder="0" value="<?php if (isset($_POST['step'])) { print $_POST['step']; } ?>">
             <span class="form__error"><?php if (isset($errors['step'])) { print $errors['step']; } ?></span>

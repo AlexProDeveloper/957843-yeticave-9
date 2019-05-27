@@ -117,10 +117,11 @@ function getDataOne($link, $sql, $param)
 function isMyBet($link, $user_id, $lot_id)
 {
     $result = false;
-    $data = getDataOne($link, "SELECT MAX(bet_price) AS user_price FROM bets WHERE user_id = ? AND lot_id = ?", [$user_id, $lot_id]);
+    $data = getDataOne($link, "SELECT MAX(bet_price) AS user_price FROM bets WHERE user_id = ? AND lot_id = ?",
+        [$user_id, $lot_id]);
     $max_price = getDataOne($link, "SELECT MAX(bet_price) AS max_price FROM bets WHERE lot_id = ?", [$lot_id]);
     if ($data['user_price'] === $max_price['max_price']) {
-        $result =  true;
+        $result = true;
     }
     if ($max_price['max_price'] === null) {
         $result = false;
@@ -134,7 +135,8 @@ function isMyBet($link, $user_id, $lot_id)
  * @param string $date дата
  * @return string
  */
-function getBetTime($date) {
+function getBetTime($date)
+{
     $now = strtotime('now');
     $date = strtotime($date);
     $diff = (int)$now - (int)$date;
@@ -143,13 +145,13 @@ function getBetTime($date) {
     $minutes = (int)(($diff % 3600) / 60);
     $result = '';
     if ($diff < 60) {
-        $result =   'Только что';
+        $result = 'Только что';
     } elseif ($hours < 1 && $days < 1 && $minutes > 0) {
-         $result =  "$minutes " . get_noun_plural_form($minutes, 'минуту', 'минуты', 'минут') . " назад";
+        $result = "$minutes " . get_noun_plural_form($minutes, 'минуту', 'минуты', 'минут') . " назад";
     } elseif ($hours <= 24 && $days < 1) {
-        $result =  "$hours " . get_noun_plural_form($hours, 'час', 'часа', 'часов') . " назад";
+        $result = "$hours " . get_noun_plural_form($hours, 'час', 'часа', 'часов') . " назад";
     } elseif ($days >= 1) {
-        $result =  "$days " . get_noun_plural_form($days, 'день', 'дня', 'дней') . " назад";
+        $result = "$days " . get_noun_plural_form($days, 'день', 'дня', 'дней') . " назад";
     }
     return $result;
 }

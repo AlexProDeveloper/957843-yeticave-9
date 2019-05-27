@@ -11,15 +11,6 @@ SELECT * FROM bets WHERE lot_id = 4 ORDER BY created_at ASC;
 
 SELECT name FROM categories;
 
--- SELECT u.name, l.name FROM lots as l
--- LEFT JOIN users as u ON l.user_id=u.id
---
---
--- SELECT *, (SELECT name FROM users) as user_name FROM lots
---
--- SELECT * FROM categories;
-
---
 SELECT l.*, c.name  as cat, (SELECT MAX(bet_price)
 FROM bets WHERE lot_id=l.id) as price FROM lots  AS l
 LEFT JOIN categories AS c ON l.category_id=c.id

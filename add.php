@@ -106,5 +106,5 @@ print include_template("layout.php", [
     "is_auth" => $is_auth,
     "user_name" => $user_name,
     "footer" => $footer,
-    "category_id" =>$category_id
+    "category_id" => $category_id
 ]);

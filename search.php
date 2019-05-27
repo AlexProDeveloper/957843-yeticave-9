@@ -12,7 +12,7 @@ if (isset($_GET['search'])) {
     $search = htmlspecialchars($_GET['search']);
 }
 $categories = getDataAll($con, 'SELECT * FROM categories', []);
-if (isset($_GET['search']) && $search && trim($search) !== '' && trim(strlen($search)) >= 3 ) {
+if (isset($_GET['search']) && $search && trim($search) !== '' && trim(strlen($search)) >= 3) {
     $cur_page = 1;
     if (isset($_GET['page'])) {
         $cur_page = $_GET['page'];

@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    if ($errors === "" && isset($_POST['cost']) ) {
+    if ($errors === "" && isset($_POST['cost'])) {
         $cost = (int)$_POST['cost'];
         $good['start_price'] = $_POST['cost'];
         setData($con, "UPDATE lots SET start_price='$cost' WHERE id=?", [$_GET['id']]);

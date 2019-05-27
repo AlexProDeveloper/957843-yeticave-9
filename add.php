@@ -13,53 +13,75 @@ if (!$is_auth) {
     exit;
 }
 $post_required_fields = ['name', 'category_id', 'description', 'start_price', 'step', 'ended_at'];
-$file_required_fields = ['url'];
 $errors = [];
 $user_id = $_SESSION['user']['id'];
-
+$category_id = null;
+$tmp_name = '';
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    foreach ($file_required_fields as $field) {
-        if (empty($_FILES[$field])) {
-            $errors[$field] = 'Заполните это поле!';
-        }
-    }
-    foreach ($post_required_fields as $field) {
-        if (trim($_POST[$field]) === "") {
-            $errors[$field] = 'Заполните это поле!';
-        }
-    }
-
-    if (!is_numeric($_POST['category_id'])) {
-        $errors['category_id'] = "Выберите категорию";
-    }
-
-    $_POST['start_price'] = (int)$_POST['start_price'];
-    $_POST['step'] = (int)$_POST['step'];
-
-    if (!is_int($_POST['start_price']) || empty($_POST['start_price'])) {
-        $errors['start_price'] = 'Введите число!';
-    }
-
-    if (!is_int($_POST['step']) || empty($_POST['step'])) {
-        $errors['step'] = 'Введите число!';
-    }
-
-    if (!is_date_valid($_POST['ended_at'])) {
-        $errors['ended_at'] = "Некорректная дата!";
-    }
-    if ($_FILES['url']) {
-        $tmp_name = $_FILES['url']['tmp_name'];
+    if (isset($_FILES['url'])) {
         $user_file = $_FILES['url']['name'];
+    }
+
+    foreach ($post_required_fields as $field) {
+        if (isset($_POST[$field])) {
+            if (trim($_POST[$field]) === "") {
+                $errors[$field] = 'Заполните это поле';
+            }
+        }
+    }
+
+    if (isset($_FILES['url'])) {
+        $errors['url'] = 'Загрузите изображение';
+    }
+
+    if (isset($_POST['category_id'])) {
+        $category_id = $_POST['category_id'];
+        if (!is_numeric($_POST['category_id']) || $_POST['category_id'] > 6 || $_POST['category_id'] < 1) {
+            $errors['category_id'] = "Выберите категорию";
+        } else {
+            $category_id = $_POST['category_id'];
+        }
+    }
+
+    if (isset($_POST['start_price'])) {
+        $_POST['start_price'] = (int)$_POST['start_price'];
+    }
+
+    if (isset($_POST['step'])) {
+        $_POST['step'] = (int)$_POST['step'];
+    }
+
+    if (isset($_POST['start_price'])) {
+        if (!is_int($_POST['start_price']) || empty($_POST['start_price'])) {
+            $errors['start_price'] = 'Введите число!';
+        }
+    }
+
+    if (isset($_POST['step'])) {
+        if (!is_int($_POST['step']) || empty($_POST['step'])) {
+            $errors['step'] = 'Введите число!';
+        }
+    }
+
+    if (isset($_POST['ended_at'])) {
+        if (!is_date_valid($_POST['ended_at'])) {
+            $errors['ended_at'] = "Некорректная дата!";
+        }
+    }
+
+    if (isset($_FILES['url']) && !empty($user_file)) {
+        $tmp_name = $_FILES['url']['tmp_name'];
         $file_info = finfo_open(FILEINFO_MIME_TYPE);
         $file_type = finfo_file($file_info, $tmp_name);
         if ($file_type !== "image/jpeg" && $file_type !== "image/png") {
             $errors['url'] = 'Некорректный формат изображения!';
+        } else {
+            unset($errors['url']);
         }
     }
 
-    if (!$errors) {
+    if (!$errors && isset($_POST['category_id'])) {
         $sql = 'INSERT INTO lots (url, category_id, name, start_price, user_id, step, description, ended_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-        //$lot_id = "SELECT id FROM lots WHERE "
         move_uploaded_file($tmp_name, __DIR__ . '/uploads/' . $user_file);
         setData($con, $sql, [
             $user_file,
@@ -73,7 +95,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         ]);
         header("Location: /");
     }
-
 }
 $content = include_template('add.php', [
     "categories" => $categories,
@@ -85,4 +106,5 @@ print include_template("layout.php", [
     "is_auth" => $is_auth,
     "user_name" => $user_name,
     "footer" => $footer,
+    "category_id" =>$category_id
 ]);

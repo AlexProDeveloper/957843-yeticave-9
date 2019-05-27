@@ -15,18 +15,24 @@ LEFT JOIN lots l ON b.lot_id = l.id LEFT JOIN users AS u ON b.user_id = u.id
 WHERE b.lot_id = ? ORDER BY bet_price DESC', [$_GET['id']]);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $_POST['cost'] = (int)$_POST['cost'];
-    $good['start_price'] = (int)$good['start_price'];
-    $good['step'] = (int)$good['step'];
-    if (trim($_POST['cost']) === "" || !is_int($_POST['cost']) || empty($_POST['cost'])) {
-        $errors = "Введите число";
+    if (isset($_POST['cost'])) {
+        $_POST['cost'] = (int)$_POST['cost'];
+        $good['start_price'] = (int)$good['start_price'];
+        $good['step'] = (int)$good['step'];
+        if (trim($_POST['cost']) === "" || !is_int($_POST['cost']) || empty($_POST['cost'])) {
+            $errors = "Введите число";
+        }
     }
 
-    if ($_POST['cost'] < $good['start_price'] + $good['step']) {
-        $errors = "Цена слишком низкая";
+    if (isset($_POST['cost'])) {
+        if ($_POST['cost'] < $good['start_price'] + $good['step']) {
+            $errors = "Цена слишком низкая";
+        } else {
+            $errors = "";
+        }
     }
 
-    if ($errors === "") {
+    if ($errors === "" && isset($_POST['cost']) ) {
         $cost = (int)$_POST['cost'];
         $good['start_price'] = $_POST['cost'];
         setData($con, "UPDATE lots SET start_price='$cost' WHERE id=?", [$_GET['id']]);
@@ -41,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: /lot.php?id=" . strip_tags($_GET['id']));
     }
 }
+
 $isMyBet = isMyBet($con, $user_id, $_GET['id']);
 
 if (!empty($good)) {

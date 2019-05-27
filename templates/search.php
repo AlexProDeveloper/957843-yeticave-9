@@ -38,7 +38,7 @@
         <ul class="pagination-list">
             <li class="pagination-item pagination-item-prev"><a href=<?php if (isset($_GET['page']) && $_GET['page'] > 1 && isset($_GET['page'])) { ?>"../search.php?search=<?= $_GET['search'];?>&page=<?= $_GET['page'] - 1; ?> <?php } else { print '#';} ?>">Назад</a></li>
             <?php foreach ($pages as $page) { ?>
-            <li class="pagination-item <?php if ($page == $cur_page) { print ' pagination-item-active';} ?>">
+            <li class="pagination-item <?php if ($page === $cur_page) { print ' pagination-item-active';} ?>">
                 <a href="../search.php?search=<?= $_GET['search'] . '&page=' . $page; ?>"><?= $page; ?></a>
             </li>
             <?php }; ?>

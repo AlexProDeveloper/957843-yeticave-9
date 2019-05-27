@@ -1,7 +1,6 @@
 <?php
 
 require_once 'vendor/autoload.php';
-//SELECT l.*, l.user_id AS creator_id, u.id AS win_user_id, u.name, u.email FROM lots l LEFT JOIN users u ON u.id = l.user_id WHERE l.winner_id IS NULL AND l.ended_at <= CURRENT_DATE() AND l.id IN (SELECT DISTINCT b.lot_id FROM bets b)
 
 $sql = "SELECT l.*, (SELECT MAX(bet_price) FROM bets WHERE bets.lot_id = l.id) AS price, 
 (SELECT user_id FROM bets WHERE bet_price = price LIMIT 1) AS win_user_id, 
@@ -29,9 +28,3 @@ if ($ended_lots) {
         }
     }
 }
-//SELECT l.*, l.user_id AS creator_id, u.id AS win_user_id, u.name, u.email, (SELECT MAX(bet_price) FROM bets WHERE bets.lot_id = l.id) AS price, (SELECT user_id FROM bets WHERE bets.user_id = l.user_id ORDER BY created_at DESC LIMIT 1) AS bet_user_id FROM lots l LEFT JOIN users u ON u.id = l.user_id WHERE l.winner_id IS NULL AND l.ended_at <= CURRENT_DATE() AND l.id IN (SELECT DISTINCT b.lot_id FROM bets b)
-//НУЖНО JOIN ПО ЮЗЕРАМ А НЕ ПО ЛОТАМ!!!!!!!!!!!!!!
-
-//SELECT l.*,(SELECT MAX(bet_price) FROM bets WHERE bets.lot_id = l.id) AS price, (SELECT user_id FROM bets WHERE bet_price = price LIMIT 1) AS win_user_id FROM lots l WHERE l.winner_id IS NULL AND l.ended_at <= CURRENT_DATE() AND l.id IN (SELECT DISTINCT b.lot_id FROM bets b)
-
-//SELECT l.*, (SELECT MAX(bet_price) FROM bets WHERE bets.lot_id = l.id) AS price, (SELECT user_id FROM bets WHERE bet_price = price LIMIT 1) AS win_user_id, (SELECT name FROM users WHERE id = win_user_id) AS winner_name, (SELECT email FROM users WHERE id = win_user_id) AS winner_email FROM lots l WHERE l.winner_id IS NULL AND l.ended_at <= CURRENT_DATE() AND l.id IN (SELECT DISTINCT b.lot_id FROM bets b)

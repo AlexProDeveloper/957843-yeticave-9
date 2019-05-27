@@ -11,7 +11,7 @@
     <h2>Мои ставки</h2>
     <table class="rates__list">
         <?php foreach ($bets as $bet) { ?>
-            <tr class="rates__item  <?php if ($bet['winner_id'] === $_SESSION['user']['id']) { print 'rates__item--win';} ?>">
+            <tr class="rates__item  <?php if ($bet['winner_id'] === $_SESSION['user']['id']) { print 'rates__item--win'; } ?>">
                 <td class="rates__info">
                     <div class="rates__img">
                         <img src="uploads/<?= $bet['url']; ?>" width="54" height="40" alt="Сноуборд">
